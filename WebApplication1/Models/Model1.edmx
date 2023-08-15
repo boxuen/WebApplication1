@@ -1,0 +1,1093 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NEW2101Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Account" Type="nvarchar(max)" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="E-mail" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Role_ID" Type="bigint" />
+          <Property Name="Static" Type="nvarchar" MaxLength="50" />
+          <Property Name="Creat" Type="datetime" />
+          <Property Name="Logtime" Type="datetime" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Checkin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Account" Type="bigint" />
+          <Property Name="Work_Date" Type="datetime" />
+          <Property Name="Getoff_Date" Type="datetime" />
+          <Property Name="time" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EquipmentList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar(max)" />
+          <Property Name="Model" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Borrow" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EquipmentLoan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Creat_Time" Type="datetime" />
+          <Property Name="Account_ID" Type="bigint" />
+          <Property Name="List_ID" Type="bigint" />
+          <Property Name="Borrow_Date" Type="date" />
+          <Property Name="Borrow_Reason" Type="nvarchar(max)" />
+          <Property Name="Return_Date" Type="date" />
+          <Property Name="Return_" Type="nchar" MaxLength="10" />
+          <Property Name="Close_Date" Type="date" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FeedBack">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="Resquiet" Type="nvarchar(max)" />
+          <Property Name="Score" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GameDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Team_ID" Type="bigint" />
+          <Property Name="GameType" Type="nvarchar" MaxLength="50" />
+          <Property Name="GameRole" Type="nvarchar(max)" />
+          <Property Name="List_ID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="GameList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="GaneName" Type="nvarchar(max)" />
+          <Property Name="GameStart" Type="date" />
+          <Property Name="GameFinish" Type="date" />
+          <Property Name="GameAddress" Type="nvarchar(max)" />
+          <Property Name="GameResult" Type="nvarchar(max)" />
+          <Property Name="GameMoney" Type="nvarchar(max)" />
+          <Property Name="GameLive" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Creat_Time" Type="datetime" />
+          <Property Name="Account_ID" Type="bigint" />
+          <Property Name="Category" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Contant" Type="nvarchar(max)" />
+          <Property Name="Upload" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PlanDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Training_contant" Type="nvarchar(max)" />
+          <Property Name="Training_Task" Type="nvarchar(max)" />
+          <Property Name="Training_Time" Type="nvarchar(max)" />
+          <Property Name="Training_Source" Type="nvarchar(max)" />
+          <Property Name="Training_strategy" Type="nvarchar(max)" />
+          <Property Name="Plan_ID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="PlayerData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Player_ID" Type="bigint" />
+          <Property Name="MVP" Type="nvarchar" MaxLength="50" />
+          <Property Name="KDA" Type="nvarchar" MaxLength="50" />
+          <Property Name="出場次數" Type="nvarchar" MaxLength="50" />
+          <Property Name="總擊殺" Type="nvarchar" MaxLength="50" />
+          <Property Name="總助攻" Type="nvarchar" MaxLength="50" />
+          <Property Name="總死亡" Type="nvarchar" MaxLength="50" />
+          <Property Name="場均金錢" Type="nvarchar" MaxLength="50" />
+          <Property Name="場均補刀" Type="nvarchar" MaxLength="50" />
+          <Property Name="場均差眼" Type="nvarchar" MaxLength="50" />
+          <Property Name="場均排眼" Type="nvarchar" MaxLength="50" />
+          <Property Name="場均參圖率" Type="nvarchar" MaxLength="50" />
+          <Property Name="場均對位經濟差" Type="nvarchar" MaxLength="50" />
+          <Property Name="傷害占比" Type="nvarchar" MaxLength="50" />
+          <Property Name="經濟占比" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PlayerList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Account_ID" Type="bigint" />
+          <Property Name="Age" Type="bigint" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Skill" Type="nvarchar" MaxLength="50" />
+          <Property Name="Exp" Type="nvarchar" MaxLength="50" />
+          <Property Name="Join_date" Type="date" />
+          <Property Name="Team_ID" Type="bigint" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TeamList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Team_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Account_ID" Type="bigint" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TrainingPlan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Project_Name" Type="nvarchar(max)" />
+          <Property Name="Target" Type="nvarchar(max)" />
+          <Property Name="Team_ID" Type="bigint" />
+          <Property Name="Open_Date" Type="date" />
+          <Property Name="End_Date" Type="date" />
+          <Property Name="Schedule" Type="nvarchar(max)" />
+          <Property Name="CloseCase_Date" Type="date" />
+        </EntityType>
+        <Association Name="FK_AccountData_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountData">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkin_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="Checkin" Type="Self.Checkin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Checkin">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipmentLoan_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="EquipmentLoan" Type="Self.EquipmentLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EquipmentLoan">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipmentLoan_EquipmentList">
+          <End Role="EquipmentList" Type="Self.EquipmentList" Multiplicity="0..1" />
+          <End Role="EquipmentLoan" Type="Self.EquipmentLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EquipmentLoan">
+              <PropertyRef Name="List_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameDetails_GameList">
+          <End Role="GameList" Type="Self.GameList" Multiplicity="0..1" />
+          <End Role="GameDetails" Type="Self.GameDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GameDetails">
+              <PropertyRef Name="List_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameDetails_TeamList">
+          <End Role="TeamList" Type="Self.TeamList" Multiplicity="0..1" />
+          <End Role="GameDetails" Type="Self.GameDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GameDetails">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanDetails_TrainingPlan">
+          <End Role="TrainingPlan" Type="Self.TrainingPlan" Multiplicity="0..1" />
+          <End Role="PlanDetails" Type="Self.PlanDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingPlan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlanDetails">
+              <PropertyRef Name="Plan_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayerData_PlayerList">
+          <End Role="PlayerList" Type="Self.PlayerList" Multiplicity="0..1" />
+          <End Role="PlayerData" Type="Self.PlayerData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayerData">
+              <PropertyRef Name="Player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayerList_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="PlayerList" Type="Self.PlayerList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayerList">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayerList_TeamList">
+          <End Role="TeamList" Type="Self.TeamList" Multiplicity="0..1" />
+          <End Role="PlayerList" Type="Self.PlayerList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayerList">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamList_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="TeamList" Type="Self.TeamList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamList">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainingPlan_TeamList">
+          <End Role="TeamList" Type="Self.TeamList" Multiplicity="0..1" />
+          <End Role="TrainingPlan" Type="Self.TrainingPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TrainingPlan">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NEW2101ModelStoreContainer">
+          <EntitySet Name="AccountData" EntityType="Self.AccountData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Checkin" EntityType="Self.Checkin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipmentList" EntityType="Self.EquipmentList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipmentLoan" EntityType="Self.EquipmentLoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeedBack" EntityType="Self.FeedBack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameDetails" EntityType="Self.GameDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameList" EntityType="Self.GameList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanDetails" EntityType="Self.PlanDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerData" EntityType="Self.PlayerData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerList" EntityType="Self.PlayerList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamList" EntityType="Self.TeamList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingPlan" EntityType="Self.TrainingPlan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccountData_Role" Association="Self.FK_AccountData_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="AccountData" EntitySet="AccountData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkin_AccountData" Association="Self.FK_Checkin_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="Checkin" EntitySet="Checkin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipmentLoan_AccountData" Association="Self.FK_EquipmentLoan_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="EquipmentLoan" EntitySet="EquipmentLoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipmentLoan_EquipmentList" Association="Self.FK_EquipmentLoan_EquipmentList">
+            <End Role="EquipmentList" EntitySet="EquipmentList" />
+            <End Role="EquipmentLoan" EntitySet="EquipmentLoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameDetails_GameList" Association="Self.FK_GameDetails_GameList">
+            <End Role="GameList" EntitySet="GameList" />
+            <End Role="GameDetails" EntitySet="GameDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameDetails_TeamList" Association="Self.FK_GameDetails_TeamList">
+            <End Role="TeamList" EntitySet="TeamList" />
+            <End Role="GameDetails" EntitySet="GameDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_AccountData" Association="Self.FK_News_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanDetails_TrainingPlan" Association="Self.FK_PlanDetails_TrainingPlan">
+            <End Role="TrainingPlan" EntitySet="TrainingPlan" />
+            <End Role="PlanDetails" EntitySet="PlanDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerData_PlayerList" Association="Self.FK_PlayerData_PlayerList">
+            <End Role="PlayerList" EntitySet="PlayerList" />
+            <End Role="PlayerData" EntitySet="PlayerData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerList_AccountData" Association="Self.FK_PlayerList_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="PlayerList" EntitySet="PlayerList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerList_TeamList" Association="Self.FK_PlayerList_TeamList">
+            <End Role="TeamList" EntitySet="TeamList" />
+            <End Role="PlayerList" EntitySet="PlayerList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamList_AccountData" Association="Self.FK_TeamList_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="TeamList" EntitySet="TeamList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingPlan_TeamList" Association="Self.FK_TrainingPlan_TeamList">
+            <End Role="TeamList" EntitySet="TeamList" />
+            <End Role="TrainingPlan" EntitySet="TrainingPlan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NEW2101Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="E_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role_ID" Type="Int64" />
+          <Property Name="Static" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Creat" Type="DateTime" />
+          <Property Name="Logtime" Type="DateTime" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_AccountData_Role" FromRole="AccountData" ToRole="Role" />
+          <NavigationProperty Name="Checkin" Relationship="Self.FK_Checkin_AccountData" FromRole="AccountData" ToRole="Checkin" />
+          <NavigationProperty Name="EquipmentLoan" Relationship="Self.FK_EquipmentLoan_AccountData" FromRole="AccountData" ToRole="EquipmentLoan" />
+          <NavigationProperty Name="News" Relationship="Self.FK_News_AccountData" FromRole="AccountData" ToRole="News" />
+          <NavigationProperty Name="PlayerList" Relationship="Self.FK_PlayerList_AccountData" FromRole="AccountData" ToRole="PlayerList" />
+          <NavigationProperty Name="TeamList" Relationship="Self.FK_TeamList_AccountData" FromRole="AccountData" ToRole="TeamList" />
+        </EntityType>
+        <EntityType Name="Checkin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Account" Type="Int64" />
+          <Property Name="Work_Date" Type="DateTime" />
+          <Property Name="Getoff_Date" Type="DateTime" />
+          <Property Name="time" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountData" Relationship="Self.FK_Checkin_AccountData" FromRole="Checkin" ToRole="AccountData" />
+        </EntityType>
+        <EntityType Name="EquipmentList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ProductCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Borrow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EquipmentLoan" Relationship="Self.FK_EquipmentLoan_EquipmentList" FromRole="EquipmentList" ToRole="EquipmentLoan" />
+        </EntityType>
+        <EntityType Name="EquipmentLoan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Creat_Time" Type="DateTime" />
+          <Property Name="Account_ID" Type="Int64" />
+          <Property Name="List_ID" Type="Int64" />
+          <Property Name="Borrow_Date" Type="DateTime" />
+          <Property Name="Borrow_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Return_Date" Type="DateTime" />
+          <Property Name="Return_" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Close_Date" Type="DateTime" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountData" Relationship="Self.FK_EquipmentLoan_AccountData" FromRole="EquipmentLoan" ToRole="AccountData" />
+          <NavigationProperty Name="EquipmentList" Relationship="Self.FK_EquipmentLoan_EquipmentList" FromRole="EquipmentLoan" ToRole="EquipmentList" />
+        </EntityType>
+        <EntityType Name="FeedBack">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Time" Type="DateTime" />
+          <Property Name="Resquiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Score" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GameDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Team_ID" Type="Int64" />
+          <Property Name="GameType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GameRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="List_ID" Type="Int64" />
+          <NavigationProperty Name="GameList" Relationship="Self.FK_GameDetails_GameList" FromRole="GameDetails" ToRole="GameList" />
+          <NavigationProperty Name="TeamList" Relationship="Self.FK_GameDetails_TeamList" FromRole="GameDetails" ToRole="TeamList" />
+        </EntityType>
+        <EntityType Name="GameList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="GaneName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GameStart" Type="DateTime" />
+          <Property Name="GameFinish" Type="DateTime" />
+          <Property Name="GameAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GameResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GameMoney" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GameLive" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GameDetails" Relationship="Self.FK_GameDetails_GameList" FromRole="GameList" ToRole="GameDetails" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Creat_Time" Type="DateTime" />
+          <Property Name="Account_ID" Type="Int64" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contant" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Upload" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountData" Relationship="Self.FK_News_AccountData" FromRole="News" ToRole="AccountData" />
+        </EntityType>
+        <EntityType Name="PlanDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Training_contant" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Training_Task" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Training_Time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Training_Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Training_strategy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Plan_ID" Type="Int64" />
+          <NavigationProperty Name="TrainingPlan" Relationship="Self.FK_PlanDetails_TrainingPlan" FromRole="PlanDetails" ToRole="TrainingPlan" />
+        </EntityType>
+        <EntityType Name="PlayerData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Player_ID" Type="Int64" />
+          <Property Name="MVP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KDA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="出場次數" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="總擊殺" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="總助攻" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="總死亡" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="場均金錢" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="場均補刀" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="場均差眼" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="場均排眼" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="場均參圖率" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="場均對位經濟差" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="傷害占比" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="經濟占比" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PlayerList" Relationship="Self.FK_PlayerData_PlayerList" FromRole="PlayerData" ToRole="PlayerList" />
+        </EntityType>
+        <EntityType Name="PlayerList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Account_ID" Type="Int64" />
+          <Property Name="Age" Type="Int64" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Skill" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Exp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Join_date" Type="DateTime" />
+          <Property Name="Team_ID" Type="Int64" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountData" Relationship="Self.FK_PlayerList_AccountData" FromRole="PlayerList" ToRole="AccountData" />
+          <NavigationProperty Name="PlayerData" Relationship="Self.FK_PlayerData_PlayerList" FromRole="PlayerList" ToRole="PlayerData" />
+          <NavigationProperty Name="TeamList" Relationship="Self.FK_PlayerList_TeamList" FromRole="PlayerList" ToRole="TeamList" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Role1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountData" Relationship="Self.FK_AccountData_Role" FromRole="Role" ToRole="AccountData" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TeamList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Team_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Account_ID" Type="Int64" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountData" Relationship="Self.FK_TeamList_AccountData" FromRole="TeamList" ToRole="AccountData" />
+          <NavigationProperty Name="GameDetails" Relationship="Self.FK_GameDetails_TeamList" FromRole="TeamList" ToRole="GameDetails" />
+          <NavigationProperty Name="PlayerList" Relationship="Self.FK_PlayerList_TeamList" FromRole="TeamList" ToRole="PlayerList" />
+          <NavigationProperty Name="TrainingPlan" Relationship="Self.FK_TrainingPlan_TeamList" FromRole="TeamList" ToRole="TrainingPlan" />
+        </EntityType>
+        <EntityType Name="TrainingPlan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Project_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Target" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Team_ID" Type="Int64" />
+          <Property Name="Open_Date" Type="DateTime" />
+          <Property Name="End_Date" Type="DateTime" />
+          <Property Name="Schedule" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CloseCase_Date" Type="DateTime" />
+          <NavigationProperty Name="PlanDetails" Relationship="Self.FK_PlanDetails_TrainingPlan" FromRole="TrainingPlan" ToRole="PlanDetails" />
+          <NavigationProperty Name="TeamList" Relationship="Self.FK_TrainingPlan_TeamList" FromRole="TrainingPlan" ToRole="TeamList" />
+        </EntityType>
+        <Association Name="FK_AccountData_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountData">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkin_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="Checkin" Type="Self.Checkin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Checkin">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipmentLoan_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="EquipmentLoan" Type="Self.EquipmentLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EquipmentLoan">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayerList_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="PlayerList" Type="Self.PlayerList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayerList">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamList_AccountData">
+          <End Role="AccountData" Type="Self.AccountData" Multiplicity="0..1" />
+          <End Role="TeamList" Type="Self.TeamList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamList">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipmentLoan_EquipmentList">
+          <End Role="EquipmentList" Type="Self.EquipmentList" Multiplicity="0..1" />
+          <End Role="EquipmentLoan" Type="Self.EquipmentLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EquipmentLoan">
+              <PropertyRef Name="List_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameDetails_GameList">
+          <End Role="GameList" Type="Self.GameList" Multiplicity="0..1" />
+          <End Role="GameDetails" Type="Self.GameDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GameDetails">
+              <PropertyRef Name="List_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameDetails_TeamList">
+          <End Role="TeamList" Type="Self.TeamList" Multiplicity="0..1" />
+          <End Role="GameDetails" Type="Self.GameDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GameDetails">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanDetails_TrainingPlan">
+          <End Role="TrainingPlan" Type="Self.TrainingPlan" Multiplicity="0..1" />
+          <End Role="PlanDetails" Type="Self.PlanDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingPlan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlanDetails">
+              <PropertyRef Name="Plan_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayerData_PlayerList">
+          <End Role="PlayerList" Type="Self.PlayerList" Multiplicity="0..1" />
+          <End Role="PlayerData" Type="Self.PlayerData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayerData">
+              <PropertyRef Name="Player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayerList_TeamList">
+          <End Role="TeamList" Type="Self.TeamList" Multiplicity="0..1" />
+          <End Role="PlayerList" Type="Self.PlayerList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayerList">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainingPlan_TeamList">
+          <End Role="TeamList" Type="Self.TeamList" Multiplicity="0..1" />
+          <End Role="TrainingPlan" Type="Self.TrainingPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamList">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TrainingPlan">
+              <PropertyRef Name="Team_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NEW2101Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountData" EntityType="Self.AccountData" />
+          <EntitySet Name="Checkin" EntityType="Self.Checkin" />
+          <EntitySet Name="EquipmentList" EntityType="Self.EquipmentList" />
+          <EntitySet Name="EquipmentLoan" EntityType="Self.EquipmentLoan" />
+          <EntitySet Name="FeedBack" EntityType="Self.FeedBack" />
+          <EntitySet Name="GameDetails" EntityType="Self.GameDetails" />
+          <EntitySet Name="GameList" EntityType="Self.GameList" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="PlanDetails" EntityType="Self.PlanDetails" />
+          <EntitySet Name="PlayerData" EntityType="Self.PlayerData" />
+          <EntitySet Name="PlayerList" EntityType="Self.PlayerList" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TeamList" EntityType="Self.TeamList" />
+          <EntitySet Name="TrainingPlan" EntityType="Self.TrainingPlan" />
+          <AssociationSet Name="FK_AccountData_Role" Association="Self.FK_AccountData_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="AccountData" EntitySet="AccountData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkin_AccountData" Association="Self.FK_Checkin_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="Checkin" EntitySet="Checkin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipmentLoan_AccountData" Association="Self.FK_EquipmentLoan_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="EquipmentLoan" EntitySet="EquipmentLoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_AccountData" Association="Self.FK_News_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerList_AccountData" Association="Self.FK_PlayerList_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="PlayerList" EntitySet="PlayerList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamList_AccountData" Association="Self.FK_TeamList_AccountData">
+            <End Role="AccountData" EntitySet="AccountData" />
+            <End Role="TeamList" EntitySet="TeamList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipmentLoan_EquipmentList" Association="Self.FK_EquipmentLoan_EquipmentList">
+            <End Role="EquipmentList" EntitySet="EquipmentList" />
+            <End Role="EquipmentLoan" EntitySet="EquipmentLoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameDetails_GameList" Association="Self.FK_GameDetails_GameList">
+            <End Role="GameList" EntitySet="GameList" />
+            <End Role="GameDetails" EntitySet="GameDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameDetails_TeamList" Association="Self.FK_GameDetails_TeamList">
+            <End Role="TeamList" EntitySet="TeamList" />
+            <End Role="GameDetails" EntitySet="GameDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanDetails_TrainingPlan" Association="Self.FK_PlanDetails_TrainingPlan">
+            <End Role="TrainingPlan" EntitySet="TrainingPlan" />
+            <End Role="PlanDetails" EntitySet="PlanDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerData_PlayerList" Association="Self.FK_PlayerData_PlayerList">
+            <End Role="PlayerList" EntitySet="PlayerList" />
+            <End Role="PlayerData" EntitySet="PlayerData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerList_TeamList" Association="Self.FK_PlayerList_TeamList">
+            <End Role="TeamList" EntitySet="TeamList" />
+            <End Role="PlayerList" EntitySet="PlayerList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingPlan_TeamList" Association="Self.FK_TrainingPlan_TeamList">
+            <End Role="TeamList" EntitySet="TeamList" />
+            <End Role="TrainingPlan" EntitySet="TrainingPlan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NEW2101ModelStoreContainer" CdmEntityContainer="NEW2101Entities">
+          <EntitySetMapping Name="AccountData">
+            <EntityTypeMapping TypeName="NEW2101Model.AccountData">
+              <MappingFragment StoreEntitySet="AccountData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Static" ColumnName="Static" />
+                <ScalarProperty Name="Creat" ColumnName="Creat" />
+                <ScalarProperty Name="Logtime" ColumnName="Logtime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Checkin">
+            <EntityTypeMapping TypeName="NEW2101Model.Checkin">
+              <MappingFragment StoreEntitySet="Checkin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Work_Date" ColumnName="Work_Date" />
+                <ScalarProperty Name="Getoff_Date" ColumnName="Getoff_Date" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentList">
+            <EntityTypeMapping TypeName="NEW2101Model.EquipmentList">
+              <MappingFragment StoreEntitySet="EquipmentList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Borrow" ColumnName="Borrow" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentLoan">
+            <EntityTypeMapping TypeName="NEW2101Model.EquipmentLoan">
+              <MappingFragment StoreEntitySet="EquipmentLoan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Creat_Time" ColumnName="Creat_Time" />
+                <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+                <ScalarProperty Name="List_ID" ColumnName="List_ID" />
+                <ScalarProperty Name="Borrow_Date" ColumnName="Borrow_Date" />
+                <ScalarProperty Name="Borrow_Reason" ColumnName="Borrow_Reason" />
+                <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+                <ScalarProperty Name="Return_" ColumnName="Return_" />
+                <ScalarProperty Name="Close_Date" ColumnName="Close_Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedBack">
+            <EntityTypeMapping TypeName="NEW2101Model.FeedBack">
+              <MappingFragment StoreEntitySet="FeedBack">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Resquiet" ColumnName="Resquiet" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameDetails">
+            <EntityTypeMapping TypeName="NEW2101Model.GameDetails">
+              <MappingFragment StoreEntitySet="GameDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Team_ID" ColumnName="Team_ID" />
+                <ScalarProperty Name="GameType" ColumnName="GameType" />
+                <ScalarProperty Name="GameRole" ColumnName="GameRole" />
+                <ScalarProperty Name="List_ID" ColumnName="List_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameList">
+            <EntityTypeMapping TypeName="NEW2101Model.GameList">
+              <MappingFragment StoreEntitySet="GameList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GaneName" ColumnName="GaneName" />
+                <ScalarProperty Name="GameStart" ColumnName="GameStart" />
+                <ScalarProperty Name="GameFinish" ColumnName="GameFinish" />
+                <ScalarProperty Name="GameAddress" ColumnName="GameAddress" />
+                <ScalarProperty Name="GameResult" ColumnName="GameResult" />
+                <ScalarProperty Name="GameMoney" ColumnName="GameMoney" />
+                <ScalarProperty Name="GameLive" ColumnName="GameLive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="NEW2101Model.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Creat_Time" ColumnName="Creat_Time" />
+                <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contant" ColumnName="Contant" />
+                <ScalarProperty Name="Upload" ColumnName="Upload" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanDetails">
+            <EntityTypeMapping TypeName="NEW2101Model.PlanDetails">
+              <MappingFragment StoreEntitySet="PlanDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Training_contant" ColumnName="Training_contant" />
+                <ScalarProperty Name="Training_Task" ColumnName="Training_Task" />
+                <ScalarProperty Name="Training_Time" ColumnName="Training_Time" />
+                <ScalarProperty Name="Training_Source" ColumnName="Training_Source" />
+                <ScalarProperty Name="Training_strategy" ColumnName="Training_strategy" />
+                <ScalarProperty Name="Plan_ID" ColumnName="Plan_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlayerData">
+            <EntityTypeMapping TypeName="NEW2101Model.PlayerData">
+              <MappingFragment StoreEntitySet="PlayerData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Player_ID" ColumnName="Player_ID" />
+                <ScalarProperty Name="MVP" ColumnName="MVP" />
+                <ScalarProperty Name="KDA" ColumnName="KDA" />
+                <ScalarProperty Name="出場次數" ColumnName="出場次數" />
+                <ScalarProperty Name="總擊殺" ColumnName="總擊殺" />
+                <ScalarProperty Name="總助攻" ColumnName="總助攻" />
+                <ScalarProperty Name="總死亡" ColumnName="總死亡" />
+                <ScalarProperty Name="場均金錢" ColumnName="場均金錢" />
+                <ScalarProperty Name="場均補刀" ColumnName="場均補刀" />
+                <ScalarProperty Name="場均差眼" ColumnName="場均差眼" />
+                <ScalarProperty Name="場均排眼" ColumnName="場均排眼" />
+                <ScalarProperty Name="場均參圖率" ColumnName="場均參圖率" />
+                <ScalarProperty Name="場均對位經濟差" ColumnName="場均對位經濟差" />
+                <ScalarProperty Name="傷害占比" ColumnName="傷害占比" />
+                <ScalarProperty Name="經濟占比" ColumnName="經濟占比" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlayerList">
+            <EntityTypeMapping TypeName="NEW2101Model.PlayerList">
+              <MappingFragment StoreEntitySet="PlayerList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Skill" ColumnName="Skill" />
+                <ScalarProperty Name="Exp" ColumnName="Exp" />
+                <ScalarProperty Name="Join_date" ColumnName="Join_date" />
+                <ScalarProperty Name="Team_ID" ColumnName="Team_ID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="NEW2101Model.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NEW2101Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamList">
+            <EntityTypeMapping TypeName="NEW2101Model.TeamList">
+              <MappingFragment StoreEntitySet="TeamList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Team_name" ColumnName="Team_name" />
+                <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainingPlan">
+            <EntityTypeMapping TypeName="NEW2101Model.TrainingPlan">
+              <MappingFragment StoreEntitySet="TrainingPlan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project_Name" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Team_ID" ColumnName="Team_ID" />
+                <ScalarProperty Name="Open_Date" ColumnName="Open_Date" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Schedule" ColumnName="Schedule" />
+                <ScalarProperty Name="CloseCase_Date" ColumnName="CloseCase_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

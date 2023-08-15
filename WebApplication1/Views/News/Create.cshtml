@@ -1,0 +1,119 @@
+﻿@model WebApplication1.Models.News
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<head>
+    <style>
+        #card{
+            padding:10px;
+        }
+        .pagetitle{
+            font-size:15px;
+        }
+    </style>
+</head>
+<main class="main" id="main">
+
+    <div class="pagetitle">
+        <h1>最新公告維護 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>使用者新增一筆最新公告紀錄。</span></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                <li class="breadcrumb-item active">最新公告</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <div class="card info-card sales-card" id="card">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <button class="btn btn-success"><i class="ri-arrow-left-line">@Html.ActionLink("返回", "Index", null, new { style = "color: white;" })</i></button>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                表單單號:(預設系統自動帶入)
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                建立時間:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Creat_Time, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Creat_Time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                發布人:
+                <div class="col-md-10">
+                    @Html.DropDownList("Account_ID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Account_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                公告類別:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                公告主旨:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                公告內容:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Contant, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Contant, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                附件上傳:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Upload, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Upload, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                發布日期:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Creat_Time, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Creat_Time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="送出" class="btn btn-success" />
+
+                </div>
+            </div>
+        </div>
+        }
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+
+
+    </div>
+
+</main>
+

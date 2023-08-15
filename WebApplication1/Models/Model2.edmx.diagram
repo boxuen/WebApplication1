@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c75bd532eb7f4ffebc007e9b8033fce8" Name="Diagram1">
+        <EntityTypeShape EntityType="NEW2101Model1.AccountData" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.Checkin" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.EquipmentList" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.EquipmentLoan" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.FeedBack" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.GameDetails" Width="1.5" PointX="7.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.GameList" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.News" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.PlanDetails" Width="1.5" PointX="9.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.PlayerData" Width="1.5" PointX="9.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.PlayerList" Width="1.5" PointX="7.5" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.Role" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.TeamList" Width="1.5" PointX="5.25" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NEW2101Model1.TrainingPlan" Width="1.5" PointX="7.5" PointY="26" IsExpanded="true" />
+        <AssociationConnector Association="NEW2101Model1.FK_AccountData_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_Checkin_AccountData" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_EquipmentLoan_AccountData" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_News_AccountData" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_PlayerList_AccountData" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_TeamList_AccountData" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_EquipmentLoan_EquipmentList" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_GameDetails_GameList" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_GameDetails_TeamList" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_PlanDetails_TrainingPlan" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_PlayerData_PlayerList" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_PlayerList_TeamList" ManuallyRouted="false" />
+        <AssociationConnector Association="NEW2101Model1.FK_TrainingPlan_TeamList" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

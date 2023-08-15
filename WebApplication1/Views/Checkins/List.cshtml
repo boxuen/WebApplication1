@@ -1,0 +1,83 @@
+﻿@model IEnumerable<WebApplication1.Models.Checkin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout - player.cshtml";
+}
+<head>
+    <style>
+        .card{
+            padding:10px;
+        }
+        .pagetitle{
+            font-size:15px;
+        }
+    </style>
+</head>
+
+
+<main class="main" id="main">
+    <div class="pagetitle">
+        <h1>選手打卡 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>提供選手紀錄訓練時間用。</span></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                <li class="breadcrumb-item active">選手打卡</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    
+    <hr />
+    <div class="card">
+             <table class="table table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Work_Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Getoff_Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.time)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AccountData.Account)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Work_Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Getoff_Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountData.Account)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+</main>
+
