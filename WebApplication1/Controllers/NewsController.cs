@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
@@ -43,14 +44,15 @@ namespace WebApplication1.Controllers
             ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Account");
             return View();
         }
-        
+
         // POST: News/Create
         // 若要免於大量指派 (overposting) 攻擊，請啟用您要繫結的特定屬性，
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Creat_Time,Account_ID,Category,Address,Contant,Upload")] News news)
-        {
+        { 
+            
             if (ModelState.IsValid)
             {
                 var model = new News();
@@ -59,14 +61,13 @@ namespace WebApplication1.Controllers
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-                
+
             }
-           
 
             ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Account", news.Account_ID);
             return View(news);
         }
-
+     
         // GET: News/Edit/5
         public ActionResult Edit(long? id)
         {
@@ -124,7 +125,7 @@ namespace WebApplication1.Controllers
             db.News.Remove(news);
             db.SaveChanges();
             return RedirectToAction("Index");
-            
+
         }
 
         protected override void Dispose(bool disposing)

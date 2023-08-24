@@ -11,6 +11,9 @@
         .pagetitle{
             font-size:15px;
         }
+        .txt a{
+            color:white;
+        }
     </style>
 </head>
 
@@ -56,8 +59,10 @@
         
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+        <button class="btn btn-primary" >
+            <span class='txt'>@Html.ActionLink("編輯", "Edit", new { id = Model.ID }, null)</span>
+            </button> |
+        <button class="btn btn-success"><i class="ri-arrow-left-line">@Html.ActionLink("返回", "Index", null, new { style = "color: white;" })</i></button>
+     </p>
 </main>
 

@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+    <title>電競戰隊管理系統 - 系統登錄</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -44,11 +44,11 @@
     ======================================================== -->
     <style>
         body {
-            background-color: black;
+            background-color: #000000cb;
             justify-content: center;
             display: flex;
             align-items: center;
-            padding: 15%;
+            padding: 10%;
         }
 
         .model_container {
@@ -65,7 +65,7 @@
             margin: 0 auto;
             background-color: #262626;
             border-radius: 24px;
-            box-shadow: 0px 8px 80px rgba(0,0,0,0,4);
+            box-shadow: 0px 0px 10px #ffffffe2;
         }
 
         .auth_background {
@@ -118,8 +118,17 @@
         .error {
             font-size: 15px;
             color: yellow;
+            background-color:blue;
         }
-    </style>
+        .error li{
+            list-style:none;
+        }
+        .error ul{
+            padding-left:0.5rem;
+            margin-top:7px;
+            margin-bottom:0px;
+        }
+                    </style>
 </head>
 
 <body>
@@ -128,19 +137,21 @@
         <div class="model_container">
             <div class="auth">
                 <div class="auth_background">
-                    <img src="~/img/slides-1.jpg" alt="Sign in" />
+                    <img src="~/img/icon.png" alt="Sign in" />
                 </div>
                 <div class="auth_container">
                     <h2 class="title"> Sign in to your account</h2> <hr />
                     <label>請輸入帳號:</label>
-                    @Html.TextBox("Account",null, new { @class = "form-control" })
+                    @Html.TextBox("Account", null, new { @class = "form-control" })
                     @*<input type="text" class="form-control" id="Account" name="Account" placeholder="帳號">*@
                     <label>請輸入密碼:</label>
                     @Html.Password("Password", null, new { @class = "form-control" })
                     @*<input type="password" class="form-control" id="Password" name="Password" placeholder="密碼">*@
-                    <label class="error" id="error">錯誤顯示區塊</label>
+                    @Html.ValidationSummary(true, "", new { @class = "error" })
                     <button class="btn btn-primary">Login</button>
-                </div>
+                    <label>系統設計 : 莊柏軒、林亞諾 <br /> 系統測試 : 李柏慶、張慶億</label>
+                </div>                   
+
             </div>
         </div>
     }
