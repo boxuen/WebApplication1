@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
-namespace WebApplication1.Views
+namespace WebApplication1.Controllers
 {
     public class AccountDatasController : Controller
     {

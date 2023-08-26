@@ -131,6 +131,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountDatasController.cs" />
     <Compile Include="Controllers\CheckinsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -204,7 +205,6 @@
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\AccountDatasController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -276,6 +276,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\News\Indexmanager.cshtml" />
+    <Content Include="Views\AccountDatas\Create.cshtml" />
+    <Content Include="Views\AccountDatas\Delete.cshtml" />
+    <Content Include="Views\AccountDatas\Details.cshtml" />
+    <Content Include="Views\AccountDatas\Edit.cshtml" />
+    <Content Include="Views\AccountDatas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

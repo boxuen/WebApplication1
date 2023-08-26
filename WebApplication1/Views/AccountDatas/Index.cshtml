@@ -1,0 +1,114 @@
+﻿@model IEnumerable<WebApplication1.Models.AccountData>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .pagetitle {
+        font-size: 15px;
+    }
+    #card {
+        padding: 10px;
+    }
+</style>
+
+<main class="main" id="main">
+    <div class="pagetitle">
+        <h1>帳號管理 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>提供新增、修改、刪除一筆使用者帳號。</span></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                <li class="breadcrumb-item active">帳號管理</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <div class="card info-card sales-card" id="card">
+        <p>
+            <button class="btn btn-primary">@Html.ActionLink("新增一筆帳號", "Create", null, new { style = "color: white;" })</button> 
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Account)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.E_mail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Static)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Creat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Logtime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role.Role1)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Account)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_mail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Static)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Creat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Logtime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role.Role1)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</main>
+
+
+
+
