@@ -1,0 +1,106 @@
+﻿@model WebApplication1.Models.AccountData
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>AccountData</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Account)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Account)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.E_mail)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.E_mail)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Static)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Static)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Creat)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Creat)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Logtime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Logtime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Role.Role1)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Role.Role1)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
