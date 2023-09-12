@@ -1,68 +1,68 @@
 ﻿@model WebApplication1.Models.News
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "公告查詢";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
     <style>
-        #card{
-            padding:10px;
+        .card {
+            padding: 10px;
         }
-        .pagetitle{
-            font-size:15px;
+
+        .pagetitle {
+            font-size: 15px;
         }
-        .txt a{
-            color:white;
+
+        .txt a {
+            color: white;
         }
+
+        .card {
+            padding: 10px;
+        }
+        dt{
+            font-size:20px;
+            color:red;
+        }
+        
     </style>
 </head>
-
 <main class="main" id="main">
-    <div class="pagetitle">
-        <h1>最新公告維護 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>查詢最新公告的詳細資訊。</span></h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
-                <li class="breadcrumb-item active">最新公告</li>
-            </ol>
-        </nav>
-    </div><!-- End Page Title -->
+    <div>
+        <div class="pagetitle">
+            <h1>最新公告 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>查詢此筆公告。</span></h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                    <li class="breadcrumb-item active">最新公告</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <hr />
+        <div class="card" id="card">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayFor(model => model.Address)
 
-    <div class="card info-card sales-card" id="card">
-        <table border="1" class="table table-striped">
-            <tr>
-                <td width="8%">建立時間:</td>
-                <td> @Html.DisplayFor(model => model.Creat_Time)</td>
-            </tr>
-            <tr>
-                <td width="8%">發布人:</td>
-                <td> @Html.DisplayFor(model => model.AccountData.Username)</td>
-            </tr>
-            <tr>
-                <td width="8%">公告類別:</td>
-                <td>  @Html.DisplayFor(model => model.Category)</td>
-            </tr>
-            <tr>
-                <td width="8%">公告主旨:</td>
-                <td>  @Html.DisplayFor(model => model.Address)</td>
-            </tr>
-            <tr>
-                <td width="8%">公告內容:</td>
-                <td> @Html.DisplayFor(model => model.Contant)</td>
-            </tr>
-            <tr>
-                <td width="8%">附件上傳:</td>
-                <td>  @Html.DisplayFor(model => model.Upload)</td>
-            </tr>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Category) / @Html.DisplayFor(model => model.AccountData.Username) / @Html.DisplayFor(model => model.Creat_Time)
+                </dd>
+                <hr / style="border:dashed;">
+                @Html.DisplayFor(model => model.Contant)
+            </dl>
+            <hr />
+            附件網址: @Html.DisplayFor(model => model.Upload)
 
-        </table>
-        
+        </div>
+       
     </div>
-    <p>
-        <button class="btn btn-primary" >
-            <span class='txt'>@Html.ActionLink("編輯", "Edit", new { id = Model.ID }, null)</span>
-            </button> |
-        <button class="btn btn-success"><i class="ri-arrow-left-line">@Html.ActionLink("返回", "Index", null, new { style = "color: white;" })</i></button>
-     </p>
+    <button class="btn btn-success">
+        <span class="txt">
+            <i class="ri-delete-back-2-fill"></i> @Html.ActionLink("返回", "Index")
+        </span>
+    </button>
+    
 </main>
 

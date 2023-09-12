@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Web;
@@ -28,43 +29,45 @@ namespace WebApplication1.Controllers
             
             var existingUser = db.AccountData.FirstOrDefault(u => u.Account == Account && u.Password == Password);
 
-           
+            //ViewBag.Title = "JJHu out";
+
             if (existingUser != null)
             {
 
-                //Session["Username"] = existingUser.Username;
+                Session["Username"] = existingUser.Username;
+               // Session["Account"] = existingUser.Account;
 
-               
-                //ViewBag.Role_ID = existingUser.Role_ID;
+                //
 
 
-                // var Username = existingUser.Username;
+                //var Username = existingUser.Username;
+                //ViewBag.Username = existingUser.Username;
                 //Console.WriteLine(ViewBag.Username);
                 if (existingUser.Role_ID == 1) // Admin
                 {
-                    
+
                     return RedirectToAction("AdminDashboard", "Home");
-                    
+
                 }
                 else if (existingUser.Role_ID == 2) // Manager
                 {
                     Debug.WriteLine("User is a Manager.");
                     return RedirectToAction("ManagerDashboard", "Home");
-                    
+
                 }
                 else if (existingUser.Role_ID == 3) // Player
                 {
-                   
+
                     Debug.WriteLine("User is a Player.");
                     return RedirectToAction("PlayerDashboard", "Home");
-                   
-                }
-                ViewBag.Name = existingUser.Username;
 
+                }
+              
             }
-            
+
+
             ModelState.AddModelError("", "帳號或密碼輸入錯誤，請重新輸入！！");
-                return View("Index");
+            return View("Index");
 
 
 

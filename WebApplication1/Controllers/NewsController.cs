@@ -14,11 +14,16 @@ namespace WebApplication1.Controllers
 {
     public class NewsController : Controller
     {
-        private NEW2101Entities1 db = new NEW2101Entities1();
 
+        
+        
+        private NEW2101Entities1 db = new NEW2101Entities1();
+       
         // GET: News
         public ActionResult Index()
         {
+            long newFormNumber = GenerateNewFormNumber();
+            ViewBag.ID = newFormNumber;
             var news = db.News.Include(n => n.AccountData);
             return View(news.ToList());
         }
@@ -41,6 +46,9 @@ namespace WebApplication1.Controllers
         // GET: News/Create
         public ActionResult Create()
         {
+            
+
+
             ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Account");
             return View();
         }
@@ -51,23 +59,19 @@ namespace WebApplication1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Creat_Time,Account_ID,Category,Address,Contant,Upload")] News news)
-        { 
+        {
             
             if (ModelState.IsValid)
             {
-                var model = new News();
-                model.Creat_Time = DateTime.Now; // 設置為當前的系統日期
-                return View(model);
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-
             }
 
             ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Account", news.Account_ID);
             return View(news);
         }
-     
+
         // GET: News/Edit/5
         public ActionResult Edit(long? id)
         {
@@ -125,7 +129,6 @@ namespace WebApplication1.Controllers
             db.News.Remove(news);
             db.SaveChanges();
             return RedirectToAction("Index");
-
         }
 
         protected override void Dispose(bool disposing)
@@ -136,7 +139,15 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+        public long GenerateNewFormNumber()
+        {
+            // 實作你的生成單號的邏輯，可以使用資料庫查詢來獲取下一個可用的單號
+            // 這只是一個示例，實際實現會根據你的需求而定
+            long latestFormNumber = db.News.Max(f => ((long)f.ID));
+           
+            return latestFormNumber + 1;
 
+        }
 
     }
 }
