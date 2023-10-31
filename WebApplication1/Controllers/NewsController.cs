@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,8 +23,9 @@ namespace WebApplication1.Controllers
         // GET: News
         public ActionResult Index()
         {
-            long newFormNumber = GenerateNewFormNumber();
-            ViewBag.ID = newFormNumber;
+            string path = Request.Url.AbsolutePath;
+           // Console.WriteLine(path);
+            
             var news = db.News.Include(n => n.AccountData);
             return View(news.ToList());
         }
@@ -46,10 +48,12 @@ namespace WebApplication1.Controllers
         // GET: News/Create
         public ActionResult Create()
         {
-            
 
 
-            ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Account");
+
+            long newFormNumber = GenerateNewFormNumber();
+            ViewBag.ID = newFormNumber;
+            ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Username");
             return View();
         }
 
@@ -60,7 +64,8 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Creat_Time,Account_ID,Category,Address,Contant,Upload")] News news)
         {
-            
+            long newFormNumber = GenerateNewFormNumber();
+            ViewBag.ID = newFormNumber;
             if (ModelState.IsValid)
             {
                 db.News.Add(news);
@@ -68,13 +73,15 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Account", news.Account_ID);
+            ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Username", news.Account_ID);
             return View(news);
         }
 
         // GET: News/Edit/5
         public ActionResult Edit(long? id)
         {
+            //long newFormNumber = GenerateNewFormNumber();
+            //ViewBag.ID = newFormNumber;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +91,7 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Account", news.Account_ID);
+            ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Username", news.Account_ID);
             return View(news);
         }
 
@@ -101,7 +108,7 @@ namespace WebApplication1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Account", news.Account_ID);
+            ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Username", news.Account_ID);
             return View(news);
         }
 
@@ -123,11 +130,14 @@ namespace WebApplication1.Controllers
         // POST: News/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(long? id)
         {
+            
             News news = db.News.Find(id);
             db.News.Remove(news);
             db.SaveChanges();
+            //ViewBag.Success = "此筆資料已刪除成功....！!";
+            Session["Success"] = "此筆資料已刪除成功....！！";
             return RedirectToAction("Index");
         }
 
@@ -148,6 +158,8 @@ namespace WebApplication1.Controllers
             return latestFormNumber + 1;
 
         }
+
+       
 
     }
 }

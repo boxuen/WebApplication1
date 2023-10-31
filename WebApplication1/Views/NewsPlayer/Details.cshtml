@@ -1,0 +1,67 @@
+﻿@model WebApplication1.Models.News
+
+@{
+    ViewBag.Title = "公告查詢";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout - player.cshtml";
+
+}
+<head>
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+
+        .txt a {
+            color: white;
+        }
+
+        .card {
+            padding: 10px;
+        }
+        dt{
+            font-size:20px;
+            color:red;
+        }
+        
+    </style>
+</head>
+<main class="main" id="main">
+    <div>
+        <div class="pagetitle">
+            <h1>最新公告 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>查詢此筆公告。</span></h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                    <li class="breadcrumb-item active">最新公告</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <hr />
+        <div class="card" id="card">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayFor(model => model.Address)
+
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Category) / @Html.DisplayFor(model => model.AccountData.Username) / @Html.DisplayFor(model => model.Creat_Time)
+                </dd>
+                <hr / style="border:dashed;">
+                @Html.TextAreaFor(model => model.Contant, new { @class = "form-control", @style = "white-space: pre;", @rows = 10, @wrap = "virtual", @readonly = "readonly" })
+            </dl>
+            <hr />
+            附件網址: @Html.DisplayFor(model => model.Upload)
+
+        </div>
+
+    </div>
+    <button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
+
+
+</main>
+

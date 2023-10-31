@@ -50,19 +50,16 @@
                     @Html.DisplayFor(model => model.Category) / @Html.DisplayFor(model => model.AccountData.Username) / @Html.DisplayFor(model => model.Creat_Time)
                 </dd>
                 <hr / style="border:dashed;">
-                @Html.DisplayFor(model => model.Contant)
+                @Html.TextAreaFor(model => model.Contant, new { @class = "form-control", @style = "white-space: pre;", @rows = 10, @wrap = "virtual", @readonly = "readonly" })
             </dl>
             <hr />
             附件網址: @Html.DisplayFor(model => model.Upload)
 
         </div>
-       
+
     </div>
-    <button class="btn btn-success">
-        <span class="txt">
-            <i class="ri-delete-back-2-fill"></i> @Html.ActionLink("返回", "Index")
-        </span>
-    </button>
-    
+    <button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
+
+
 </main>
 

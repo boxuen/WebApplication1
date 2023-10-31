@@ -3,8 +3,15 @@
 @{
     ViewBag.Title = "最新公告";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout - manager.cshtml";
     ViewBag.Name = Session["Username"];
+    ViewBag.Success = Session["Success"];
+    //ViewBag.Role_ID = Session["Role_ID"];
+    
 }
+
+
+
 
 <head>
     <style>
@@ -17,17 +24,17 @@
         }
 
         .txt a {
-            color: white;
-        }
+        color: white;
+    }
 
         .card {
-            padding: 10px;
-        }
+    padding: 10px;
+    }
     </style>
 </head>
 
 <main class="main" id="main">
-
+   
 
     <div class="pagetitle">
         <h1>最新公告 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>提供新增、修改、刪除一筆戰隊最新公告資訊。</span></h1>
@@ -92,21 +99,33 @@
                             <span class="txt">@Html.ActionLink("查看公告", "Details", new { id = item.ID })</span>
                         </button> |
                         <button class="btn btn btn-danger btn-sm">
-                        <span class="txt">@Html.ActionLink("刪除", "Delete", new { id = item.ID })</span>
-                    </button>
+                            <span class="txt">@Html.ActionLink("刪除", "Delete", new { id = item.ID })</span>
+
+                        </button>
 
                     </td>
                 </tr>
-              
+
             }
 
         </table>
 
     </div>
-
-
-
     <!-----刪除 Model------->
-    
+
+    @if (ViewBag.Success != null)
+    {
+        <script>
+           alert('@ViewBag.Success');
+        </script>
+    }
+
+
+
+
+
+
+
+
 </main>
 

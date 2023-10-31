@@ -1,0 +1,138 @@
+﻿@model WebApplication1.Models.News
+
+@{
+    ViewBag.Title = "新增公告";
+    Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    ViewBag.Name = Session["Username"];
+    ViewBag.User_ID = Session["User_ID"];
+}
+
+<head>
+    <style>
+        .card {
+            padding: 10px;
+           
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+        .txt a{
+            color:white;
+        }
+        .card{
+            padding:10px;
+        }
+        #card-body{
+            padding:10px;
+        }
+    </style>
+</head>
+
+<main class="main" id="main">
+    <div class="pagetitle">
+        <h1>最新公告 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>新增一筆最新公告輸入畫面。</span></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                <li class="breadcrumb-item active">最新公告</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+<button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
+
+    <hr />
+    <div class="card" id="card">
+        <div id="card-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-md-10">
+                        表單單號:(系統預設自動建立單號)
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", Value = ViewBag.ID, @readonly = "readonly" } })
+                            @*@Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        公告時間:
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Creat_Time, new { htmlAttributes = new { @class = "form-control", Value = DateTime.Now.ToString(), @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Creat_Time, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        發布人:
+                        <div class="row">
+                            <div class="col-1">
+
+                                @Html.EditorFor(model => model.Account_ID, new { htmlAttributes = new { @class = "form-control", Value = ViewBag.User_ID, @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Account_ID, "", new { @class = "text-danger" })
+
+
+                            </div>
+                            <div class="col-2">
+                                <input type="text" name="name" value="@ViewBag.Name" class="form-control" readonly />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        公告類別:
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        公告主旨:
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        公告內容:
+
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Contant, new { @class = "form-control", @style = "white-space: pre;", @rows = 10 })
+                            @Html.ValidationMessageFor(model => model.Contant, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        附件網址:
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Upload, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Upload, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="新增" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+       
+    </div>
+
+
+
+
+
+</main>
+

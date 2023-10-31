@@ -35,7 +35,10 @@ namespace WebApplication1.Controllers
             {
 
                 Session["Username"] = existingUser.Username;
-               // Session["Account"] = existingUser.Account;
+                Session["User_ID"] = existingUser.ID;
+                Session["Role_ID"] = existingUser.Role_ID;
+
+                // Session["Account"] = existingUser.Account;
 
                 //
 
