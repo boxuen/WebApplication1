@@ -28,6 +28,7 @@ namespace WebApplication1.Controllers
         {
             
             var existingUser = db.AccountData.FirstOrDefault(u => u.Account == Account && u.Password == Password);
+            
 
             //ViewBag.Title = "JJHu out";
 
@@ -37,6 +38,7 @@ namespace WebApplication1.Controllers
                 Session["Username"] = existingUser.Username;
                 Session["User_ID"] = existingUser.ID;
                 Session["Role_ID"] = existingUser.Role_ID;
+                Session["Logtime"] = DateTime.Now.ToString();
 
                 // Session["Account"] = existingUser.Account;
 
@@ -48,7 +50,8 @@ namespace WebApplication1.Controllers
                 //Console.WriteLine(ViewBag.Username);
                 if (existingUser.Role_ID == 1) // Admin
                 {
-
+                   
+                    
                     return RedirectToAction("AdminDashboard", "Home");
 
                 }

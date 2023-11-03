@@ -39,6 +39,8 @@ namespace WebApplication1.Controllers
         // GET: AccountDatas/Create
         public ActionResult Create()
         {
+            long newFormNumber = GenerateNewFormNumber();
+            ViewBag.ID = newFormNumber;
             ViewBag.Role_ID = new SelectList(db.Role, "ID", "Role1");
             return View();
         }
@@ -52,6 +54,8 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+                long newFormNumber = GenerateNewFormNumber();
+                ViewBag.ID = newFormNumber;
                 db.AccountData.Add(accountData);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,6 +90,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(accountData).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -128,5 +133,16 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public long GenerateNewFormNumber()
+        {
+            // 實作你的生成單號的邏輯，可以使用資料庫查詢來獲取下一個可用的單號
+            // 這只是一個示例，實際實現會根據你的需求而定
+            long latestFormNumber = db.AccountData.Max(f => ((long)f.ID));
+
+            return latestFormNumber + 1;
+
+        }
+
     }
 }
