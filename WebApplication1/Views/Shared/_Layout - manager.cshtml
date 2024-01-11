@@ -89,10 +89,9 @@
 
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="~/Login">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>系統登出</span>
-                            </a>
+                            <span>
+                                @Html.ActionLink("系統登出", "Logout", "Login", new { area = "" }, new { @style = "color: black;", @class = "bi bi-box-arrow-right dropdown-item d-flex align-items-center " })
+                            </span>
                         </li>
 
                     </ul><!-- End Profile Dropdown Items -->

@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -34,11 +35,12 @@ namespace WebApplication1.Controllers
 
             if (existingUser != null)
             {
-
+                FormsAuthentication.SetAuthCookie(existingUser.Account, false);
                 Session["Username"] = existingUser.Username;
                 Session["User_ID"] = existingUser.ID;
                 Session["Role_ID"] = existingUser.Role_ID;
                 Session["Logtime"] = DateTime.Now.ToString();
+                
 
                 // Session["Account"] = existingUser.Account;
 
@@ -78,6 +80,12 @@ namespace WebApplication1.Controllers
 
 
         }
-       
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Login");
+        }
+
     }
 }

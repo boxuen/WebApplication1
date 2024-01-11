@@ -36,7 +36,13 @@
     <div class="pagetitle">
         <h1>新增帳號 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>使用者新增一筆帳號。</span></h1>
     </div>
-   
+    <div class="form-group">
+        <button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
+
+
+        <hr />
+
+    </div>
     <div class="card" id="card">
         <div id="card-body">
             @using (Html.BeginForm())
@@ -44,13 +50,7 @@
                 @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <div class="form-group">
-                    <button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
-                    <input type="submit" value="送出" class="btn btn-success" />
-
-                    <hr />
-
-                </div>
+                
 
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -143,7 +143,7 @@
                     </div>
                 </div>
 
-
+                <input type="submit" value="送出" class="btn btn-success" />
             </div>
             }
 

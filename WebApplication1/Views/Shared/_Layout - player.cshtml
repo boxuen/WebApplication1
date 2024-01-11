@@ -87,10 +87,9 @@
 
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="~/Login">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>系統登出</span>
-                            </a>
+                            <span>
+                                @Html.ActionLink("系統登出", "Logout", "Login", new { area = "" }, new { @style = "color: black;", @class = "bi bi-box-arrow-right dropdown-item d-flex align-items-center " })
+                            </span>
                         </li>
 
                     </ul><!-- End Profile Dropdown Items -->
@@ -121,12 +120,12 @@
                 </a>
             </li>
             <!-- ======= 帳號管理 ======= -->
-            <li class="nav-item">
+            @*<li class="nav-item">
                 <a class="nav-link collapsed" href="#">
                     <i class="ri ri-database-2-fill"></i>
                     <span>帳號管理</span>
                 </a>
-            </li>
+            </li>*@
 
             <!-- ======= 選手管理 ======= -->
             <li class="nav-item">
@@ -144,11 +143,11 @@
                             <i class="bi bi-circle"></i><span>選手數據管理</span>
                         </a>
                     </li>
-                    <li>
+                    @*<li>
                         <a href="#">
                             <i class="bi bi-circle"></i><span>選手出缺勤管理</span>
                         </a>
-                    </li>
+                    </li>*@
                 </ul>
             </li>
             <!-- ======= 訓練計畫管理 ======= -->
@@ -171,11 +170,11 @@
                     <i class="ri ri-inbox-archive-fill"></i><span>設備管理</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="equipment-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
+                    @*<li>
                         <a href="#">
                             <i class="bi bi-circle"></i><span>設備物料管理</span>
                         </a>
-                    </li>
+                    </li>*@
                     <li>
                         <a href="#">
                             <i class="bi bi-circle"></i><span>設備借用維護</span>

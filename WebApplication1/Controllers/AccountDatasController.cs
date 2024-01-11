@@ -18,6 +18,8 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             var accountData = db.AccountData.Include(a => a.Role);
+           
+            
             return View(accountData.ToList());
         }
 
@@ -58,6 +60,8 @@ namespace WebApplication1.Controllers
                 ViewBag.ID = newFormNumber;
                 db.AccountData.Add(accountData);
                 db.SaveChanges();
+                //ModelState.AddModelError("系統通知", "此筆資料新增成功!!");
+                Session["msg"] = "資料已新增成功!!";
                 return RedirectToAction("Index");
             }
 
@@ -93,6 +97,7 @@ namespace WebApplication1.Controllers
                 
                 db.Entry(accountData).State = EntityState.Modified;
                 db.SaveChanges();
+                Session["msg"] = "資料已更新成功!!";
                 return RedirectToAction("Index");
             }
             ViewBag.Role_ID = new SelectList(db.Role, "ID", "Role1", accountData.Role_ID);
@@ -122,6 +127,7 @@ namespace WebApplication1.Controllers
             AccountData accountData = db.AccountData.Find(id);
             db.AccountData.Remove(accountData);
             db.SaveChanges();
+            Session["msg"] = "資料已刪除成功!!";
             return RedirectToAction("Index");
         }
 
