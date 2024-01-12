@@ -2,8 +2,44 @@
 
 @{
     ViewBag.Title = "公告查詢";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.role = Session["Role_ID"];
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@* 權限判斷 *@
+@{
+
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+}
+
+@{
+    ViewBag.Title = "公告版";
+    ViewBag.role = Session["Role_ID"];
+}
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
+}
+
 <head>
     <style>
         .card {
@@ -21,11 +57,11 @@
         .card {
             padding: 10px;
         }
-        dt{
-            font-size:20px;
-            color:red;
+
+        dt {
+            font-size: 20px;
+            color: red;
         }
-        
     </style>
 </head>
 <main class="main" id="main">

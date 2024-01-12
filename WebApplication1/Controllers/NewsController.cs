@@ -23,6 +23,7 @@ namespace WebApplication1.Controllers
         // GET: News
         public ActionResult Index()
         {
+          
             string path = Request.Url.AbsolutePath;
            // Console.WriteLine(path);
             
@@ -70,6 +71,7 @@ namespace WebApplication1.Controllers
             {
                 db.News.Add(news);
                 db.SaveChanges();
+                Session["msg"] = "資料新增成功....表單編號：" + ViewBag.ID;
                 return RedirectToAction("Index");
             }
 
@@ -106,9 +108,12 @@ namespace WebApplication1.Controllers
             {
                 db.Entry(news).State = EntityState.Modified;
                 db.SaveChanges();
+                Session["msg"] = "此筆資料已更新成功....！！";
                 return RedirectToAction("Index");
+               
             }
             ViewBag.Account_ID = new SelectList(db.AccountData, "ID", "Username", news.Account_ID);
+            
             return View(news);
         }
 
@@ -137,7 +142,7 @@ namespace WebApplication1.Controllers
             db.News.Remove(news);
             db.SaveChanges();
             //ViewBag.Success = "此筆資料已刪除成功....！!";
-            Session["Success"] = "此筆資料已刪除成功....！！";
+            Session["msg"] = "此筆資料已刪除成功....！！";
             return RedirectToAction("Index");
         }
 

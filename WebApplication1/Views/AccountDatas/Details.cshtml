@@ -1,9 +1,39 @@
 ﻿@model WebApplication1.Models.AccountData
 
 @{
-    Layout = null;
+    //  Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "編輯帳號";
+    ViewBag.role = Session["Role_ID"];
+
+}
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
 }
 
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";</script>
+
+    }
+}
 <!DOCTYPE html>
 
 <html>
@@ -19,83 +49,83 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Account)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Account)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Username)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Username)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Password)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Password)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.E_mail)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.E_mail)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Phone)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Phone)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Static)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Static)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Creat)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Creat)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Logtime)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Logtime)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Note)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Note)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Role.Role1)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Role.Role1)
             </dd>
-    
+
         </dl>
     </div>
     <p>

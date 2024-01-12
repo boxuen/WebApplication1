@@ -2,10 +2,46 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Success = Session["msg"];
+    ViewBag.role = Session["Role_ID"];
+}
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
 }
 
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
+    else if (ViewBag.role == 3)
+    {
+        <script>
+            alert("不可以壞壞喔，偷偷越級了....，給我重新登錄帳號吧！ ")
+            location.href = "/Login/Index";
+        </script>
+    }
+}
 
 <style>
 
@@ -29,7 +65,7 @@
 
 <main class="main" id="main">
 
-   
+
 
 
     <div class="pagetitle">
@@ -39,10 +75,7 @@
                 <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
             </ol>
         </nav>
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-            系統訊息: @ViewBag.Success
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+
         <div class="card info-card sales-card" id="card">
             <p>
                 <button class="btn btn-danger">
@@ -72,9 +105,7 @@
                     <th>
                         建立日期
                     </th>
-                    <th>
-                        最後一次登錄時間
-                    </th>
+
                     <th>
                         備註
                     </th>
@@ -108,9 +139,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Creat)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Logtime)
-                        </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.Note)
                         </td>
@@ -118,8 +147,12 @@
                             @Html.DisplayFor(modelItem => item.Role.Role1)
                         </td>
                         <td>
-                            @Html.ActionLink("編輯", "Edit", new { id = item.ID }, new { @class = "btn btn-success px-2" }) |
-                            @Html.ActionLink("刪除", "Delete", new { id = item.ID }, new { @class = "btn btn-danger px-2" })
+                            @Html.ActionLink("編輯", "Edit", new { id = item.ID }, new { @class = "btn btn-success px-2" })
+                           
+                            @if (ViewBag.role < 2)
+                            {
+                                @Html.ActionLink("刪除", "Delete", new { id = item.ID }, new { @class = "btn btn-danger px-2" })
+                            }
                         </td>
                     </tr>
                 }
@@ -128,6 +161,14 @@
 
 
 </main>
+<!-----刪除 Model------->
+
+@if (ViewBag.Success != null)
+{
+    <script>
+            alert('@ViewBag.Success');
+    </script>
+}
 
 
 

@@ -1,10 +1,41 @@
 ﻿@model WebApplication1.Models.AccountData
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "刪除帳號";
+    //  Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "編輯帳號";
+    ViewBag.role = Session["Role_ID"];
+
+}
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
+}
+
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
 
     }
+}
 
 <!DOCTYPE html>
 
@@ -30,7 +61,7 @@
             padding: 10px;
         }
     </style>
-    </head>
+</head>
 <main class="main" id="main">
     <div class="pagetitle">
         <h1>最新公告 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>刪除此筆公告內容。</span></h1>

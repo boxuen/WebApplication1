@@ -2,29 +2,49 @@
 
 @{
     ViewBag.Title = "新增公告";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+   // Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Name = Session["Username"];
     ViewBag.User_ID = Session["User_ID"];
+    ViewBag.role = Session["Role_ID"];
 }
+@* 權限判斷 *@
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
+}
 <head>
     <style>
         .card {
             padding: 10px;
-           
         }
 
         .pagetitle {
             font-size: 15px;
         }
-        .txt a{
-            color:white;
+
+        .txt a {
+            color: white;
         }
-        .card{
-            padding:10px;
+
+        .card {
+            padding: 10px;
         }
-        #card-body{
-            padding:10px;
+
+        #card-body {
+            padding: 10px;
         }
     </style>
 </head>
@@ -40,7 +60,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-<button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
+    <button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
 
     <hr />
     <div class="card" id="card">
@@ -127,7 +147,7 @@
                 </div>
             }
         </div>
-       
+
     </div>
 
 

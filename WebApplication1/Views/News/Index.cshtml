@@ -1,16 +1,41 @@
 ﻿@model IEnumerable<WebApplication1.Models.News>
-
 @{
     ViewBag.Title = "最新公告";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    //Layout = "~/Views/Shared/_Layout - manager.cshtml";
     ViewBag.Name = Session["Username"];
-    ViewBag.Success = Session["Success"];
-    //ViewBag.Role_ID = Session["Role_ID"];
-    
+    ViewBag.Success = Session["msg"];
+    ViewBag.role = Session["Role_ID"];
+}
+@* 權限判斷 *@
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if(ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+else
+            {
+                Layout = "~/Views/Shared/_Layout - player.cshtml";
+            }
+
 }
 
 
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
+}
 
 
 <head>
@@ -24,19 +49,19 @@
         }
 
         .txt a {
-        color: white;
-    }
+            color: white;
+        }
 
         .card {
-    padding: 10px;
-    }
+            padding: 10px;
+        }
     </style>
+
 </head>
 
 <main class="main" id="main">
-
-
     <div class="pagetitle">
+
         <h1>最新公告 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>提供新增、修改、刪除一筆戰隊最新公告資訊。</span></h1>
         <nav>
             <ol class="breadcrumb">
@@ -46,10 +71,13 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if (ViewBag.role < 3)
+    {
+        <button class="btn btn-danger">
+            <span class="txt"><i class="ri-add-circle-fill"></i> @Html.ActionLink("新增", "Create")</span>
+        </button>
+    }
 
-    <button class="btn btn-danger">
-        <span class="txt"><i class="ri-add-circle-fill"></i> @Html.ActionLink("新增", "Create")</span>
-    </button>
 
 
     <hr />
@@ -91,19 +119,33 @@
                         @Html.DisplayFor(modelItem => item.AccountData.Username)
                     </td>
                     <td>
-                        <button class="btn btn-success btn-sm">
-                            <span class="txt">@Html.ActionLink("修改", "Edit", new { id = item.ID })</span>
-                        </button>
-                        |
-                        <button class="btn btn-primary btn-sm">
-                            <span class="txt">@Html.ActionLink("查看公告", "Details", new { id = item.ID })</span>
-                        </button> |
-                        <button class="btn btn btn-danger btn-sm">
-                            <span class="txt">@Html.ActionLink("刪除", "Delete", new { id = item.ID })</span>
+                        @{
+                            if (ViewBag.role < 3)
+                            {
+                                <button class="btn btn-success btn-sm">
+                                    <span class="txt">@Html.ActionLink("修改", "Edit", new { id = item.ID })</span>
+                                </button>
+                                <button class="btn btn btn-danger btn-sm">
+                                    <span class="txt">@Html.ActionLink("刪除", "Delete", new { id = item.ID })</span>
+                                </button>
+                                <button class="btn btn-primary btn-sm">
+                                    <span class="txt">@Html.ActionLink("查看公告", "Details", new { id = item.ID })</span>
+                                </button>
+                            }
+                        }
 
-                        </button>
 
+
+                        @{
+                            if (ViewBag.role == 3)
+                            {
+                                <button class="btn btn-primary btn-sm">
+                                    <span class="txt">@Html.ActionLink("查看公告", "Details", new { id = item.ID })</span>
+                                </button>
+                            }
+                        }
                     </td>
+
                 </tr>
 
             }
@@ -116,10 +158,10 @@
     @if (ViewBag.Success != null)
     {
         <script>
-           alert('@ViewBag.Success');
+            alert('@ViewBag.Success');
         </script>
     }
-    
+
 
 
 

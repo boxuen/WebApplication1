@@ -1,21 +1,53 @@
 ﻿@model WebApplication1.Models.News
 
+
+@* 權限判斷 *@
+@{
+
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+}
+
 @{
     ViewBag.Title = "編輯公告";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.role = Session["Role_ID"];
+}
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
 }
 
 <head>
 
     <style>
-        .card{
-            padding:10px;
+        .card {
+            padding: 10px;
         }
+
         .pagetitle {
             font-size: 15px;
         }
-        .txt a{
-            color:white;
+
+        .txt a {
+            color: white;
         }
     </style>
 </head>
@@ -52,8 +84,8 @@
                 <div class="form-group">
                     發佈人:
                     <div class="col-md-10">
-                        @Html.DropDownList("Account_ID", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(model => model.Account_ID, "", new { @class = "text-danger" })
+                        @Html.DropDownList("Account_ID", null, htmlAttributes: new { @class = "form-select", @readonly = "true"})
+                        @Html.ValidationMessageFor(model => model.Account_ID, "", new { @class = "text-danger" , @readonly = "readonly" })
                     </div>
                 </div>
 

@@ -2,20 +2,51 @@
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.role = Session["Role_ID"];
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@* 權限判斷 *@
+@{
+
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+}
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
 }
 
 <head>
 
     <style>
-        .card{
-            padding:10px;
+        .card {
+            padding: 10px;
         }
+
         .pagetitle {
             font-size: 15px;
         }
-        .txt a{
-            color:white;
+
+        .txt a {
+            color: white;
         }
     </style>
 </head>
@@ -95,17 +126,17 @@
             {
                 @Html.AntiForgeryToken()
                 <div class="form-actions no-color">
-                     <input type="submit" value="確認刪除" class="btn btn-danger" /> 
+                    <input type="submit" value="確認刪除" class="btn btn-danger" />
                 </div>
             }
         </div>
-        
-    <div class="col-md-1">
-       <button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
 
+        <div class="col-md-1">
+            <button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
+
+        </div>
     </div>
-    </div>
-    
+
 
 
 
