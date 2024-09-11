@@ -71,6 +71,29 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.3.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.3.0\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -88,32 +111,8 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -128,11 +127,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\AccountDatasController.cs" />
     <Compile Include="Controllers\CheckinsController.cs" />
+    <Compile Include="Controllers\PlayerDatasController.cs" />
+    <Compile Include="Controllers\PlayerListsController.cs" />
+    <Compile Include="Controllers\STUCheckinsViewController.cs" />
+    <Compile Include="Controllers\CheckinsViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\TeamListsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +209,7 @@
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\FeedBacksController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\WebApplication1.dll" />
@@ -232,6 +238,7 @@
     <Content Include="img\card.jpg" />
     <Content Include="img\favicon.png" />
     <Content Include="img\icon.png" />
+    <Content Include="img\img.png" />
     <Content Include="img\logo.png" />
     <Content Include="img\messages-1.jpg" />
     <Content Include="img\messages-2.jpg" />
@@ -349,12 +356,6 @@
     <Content Include="obj\Release\WebApplication1.dll" />
     <Content Include="obj\Release\WebApplication1.pdb" />
     <Content Include="obj\Release\_WPPLastBuildInfo.txt" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.esm.js" />
-    <Content Include="Scripts\bootstrap.esm.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="obj\Release\edmxResourcesToEmbed\Models\Model1.csdl" />
     <Content Include="obj\Release\edmxResourcesToEmbed\Models\Model1.msl" />
     <Content Include="obj\Release\edmxResourcesToEmbed\Models\Model1.ssdl" />
@@ -405,6 +406,34 @@
     <Content Include="obj\Release\TransformWebConfig\transformed\Web.config" />
     <Content Include="obj\Release\WebApplication1.csproj.AssemblyReference.cache" />
     <Content Include="obj\Release\WebApplication1.csproj.CoreCompileInputs.cache" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -682,12 +711,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_Layout - player.cshtml" />
-    <Content Include="Views\Checkins\Create.cshtml" />
-    <Content Include="Views\Checkins\Delete.cshtml" />
-    <Content Include="Views\Checkins\Details.cshtml" />
-    <Content Include="Views\Checkins\Edit.cshtml" />
-    <Content Include="Views\Checkins\List.cshtml" />
-    <Content Include="Views\Checkins\Index.cshtml" />
     <Content Include="Views\Shared\_Layout - manager.cshtml" />
     <Content Include="Views\Home\AdminDashboard.cshtml" />
     <Content Include="Views\Home\ManagerDashboard.cshtml" />
@@ -790,6 +813,42 @@
     <Content Include="vendor\tinymce\composer.json" />
     <Content Include="vendor\tinymce\package.json" />
     <Content Include="vendor\tinymce\README.md" />
+    <Content Include="Views\Checkins\Create.cshtml" />
+    <Content Include="Views\Checkins\Delete.cshtml" />
+    <Content Include="Views\Checkins\Details.cshtml" />
+    <Content Include="Views\Checkins\Edit.cshtml" />
+    <Content Include="Views\Checkins\Index.cshtml" />
+    <Content Include="Views\CheckinsView\Create.cshtml" />
+    <Content Include="Views\CheckinsView\Delete.cshtml" />
+    <Content Include="Views\CheckinsView\Details.cshtml" />
+    <Content Include="Views\CheckinsView\Edit.cshtml" />
+    <Content Include="Views\CheckinsView\Index.cshtml" />
+    <Content Include="Views\STUCheckinsView\Create.cshtml" />
+    <Content Include="Views\STUCheckinsView\Delete.cshtml" />
+    <Content Include="Views\STUCheckinsView\Details.cshtml" />
+    <Content Include="Views\STUCheckinsView\Edit.cshtml" />
+    <Content Include="Views\STUCheckinsView\Index.cshtml" />
+    <Content Include="Views\TeamLists\Delete.cshtml" />
+    <Content Include="Views\TeamLists\Details.cshtml" />
+    <Content Include="Views\TeamLists\Edit.cshtml" />
+    <Content Include="Views\TeamLists\Index.cshtml" />
+    <Content Include="Views\PlayerLists\Create.cshtml" />
+    <Content Include="Views\PlayerLists\Delete.cshtml" />
+    <Content Include="Views\PlayerLists\Details.cshtml" />
+    <Content Include="Views\PlayerLists\Edit.cshtml" />
+    <Content Include="Views\PlayerLists\Index.cshtml" />
+    <Content Include="Views\TeamLists\Create.cshtml" />
+    <Content Include="Views\PlayerDatas\Create.cshtml" />
+    <Content Include="Views\PlayerDatas\Delete.cshtml" />
+    <Content Include="Views\PlayerDatas\Details.cshtml" />
+    <Content Include="Views\PlayerDatas\Edit.cshtml" />
+    <Content Include="Views\PlayerDatas\Index.cshtml" />
+    <Content Include="Views\UserInfo\Edit.cshtml" />
+    <Content Include="Views\FeedBacks\Create.cshtml" />
+    <Content Include="Views\FeedBacks\Delete.cshtml" />
+    <Content Include="Views\FeedBacks\Details.cshtml" />
+    <Content Include="Views\FeedBacks\Edit.cshtml" />
+    <Content Include="Views\FeedBacks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -797,22 +856,6 @@
     <Folder Include="obj\Release\TransformWebConfig\transformed\Views\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.rtl.min.css.map" />
-    <Content Include="Content\bootstrap.rtl.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
-    <Content Include="Content\bootstrap-utilities.min.css.map" />
-    <Content Include="Content\bootstrap-utilities.css.map" />
-    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-grid.rtl.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="packages.config" />
     <Content Include="Views\AccountDatas\Create.cshtml" />
     <Content Include="Views\AccountDatas\Delete.cshtml" />
@@ -824,12 +867,6 @@
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.esm.min.js.map" />
-    <Content Include="Scripts\bootstrap.esm.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
   </ItemGroup>

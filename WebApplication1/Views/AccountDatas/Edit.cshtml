@@ -82,54 +82,54 @@
 
                     </div>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-horizontal">
+                <div class="form-horizontal">
 
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.ID)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
 
-                        <div class="form-group">
+                    <div class="form-group">
 
-                            <div class="col-md-5">
-                                帳號:
-                                @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
-                            </div>
-
+                        <div class="col-md-5">
+                            帳號:
+                            @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-5">
-                                使用者名稱：
-                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-                            </div>
+                    </div>
 
+                    <div class="form-group">
+                        <div class="col-md-5">
+                            使用者名稱：
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                         </div>
 
-                        <div class="form-group">
-                            密碼：
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="form-group">
-                            電子信箱：
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.E_mail, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.E_mail, "", new { @class = "text-danger" })
-                            </div>
+                    <div class="form-group">
+                        密碼：
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            電話：
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-                            </div>
+                    <div class="form-group">
+                        電子信箱：
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.E_mail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.E_mail, "", new { @class = "text-danger" })
                         </div>
+                    </div>
 
+                    <div class="form-group">
+                        電話：
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                  
                         <div class="form-group">
                             帳號權限：（*此功能僅開放<b>最高權限管理者</b>使用*）
                             <div class="col-md-10">
@@ -137,26 +137,28 @@
                                 @Html.ValidationMessageFor(model => model.Role_ID, "", new { @class = "text-danger" })
                             </div>
                         </div>
+                    
 
-                        <div class="form-group">
-                            帳號狀態：
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Static, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Static, "", new { @class = "text-danger" })
-                            </div>
+
+                    <div class="form-group">
+                        帳號狀態：
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Static, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Static, "", new { @class = "text-danger" })
                         </div>
-
-                        <div class="form-group">
-                            建立日期：
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Creat, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.Creat, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-
-                        <input type="submit" value="送出" class="btn btn-success" />
                     </div>
+
+                    <div class="form-group">
+                        建立日期：
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Creat, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Creat, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <input type="submit" value="送出" class="btn btn-success" />
+                </div>
 
 
                 </div>

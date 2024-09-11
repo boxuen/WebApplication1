@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -18,8 +19,15 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             var checkin = db.Checkin.Include(c => c.AccountData);
+
             return View(checkin.ToList());
+            
+            
         }
+
+        // account 抓資料
+
+
 
         // GET: Checkins/Details/5
         public ActionResult Details(long? id)
@@ -40,6 +48,8 @@ namespace WebApplication1.Controllers
         public ActionResult Create()
         {
             ViewBag.Account = new SelectList(db.AccountData, "ID", "Account");
+            long newFormNumber = GenerateNewFormNumber();
+            ViewBag.ID = newFormNumber;
             return View();
         }
 
@@ -53,7 +63,9 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 db.Checkin.Add(checkin);
+               // Session["msg"] = "此筆紀錄已建立成功......."
                 db.SaveChanges();
+                ViewBag.msg = "此筆紀錄已建立成功........";
                 return RedirectToAction("Index");
             }
 
@@ -88,9 +100,12 @@ namespace WebApplication1.Controllers
             {
                 db.Entry(checkin).State = EntityState.Modified;
                 db.SaveChanges();
+                //Session["msg"] = "此筆紀錄已更新成功.......";
+                ViewBag.msg = "此筆紀錄已更新成功.........";
                 return RedirectToAction("Index");
             }
             ViewBag.Account = new SelectList(db.AccountData, "ID", "Account", checkin.Account);
+            
             return View(checkin);
         }
 
@@ -117,6 +132,8 @@ namespace WebApplication1.Controllers
             Checkin checkin = db.Checkin.Find(id);
             db.Checkin.Remove(checkin);
             db.SaveChanges();
+           // Session["msg"] = "此筆紀錄已刪除成功.......";
+            ViewBag.msg = "此筆紀錄已刪除成功.......";
             return RedirectToAction("Index");
         }
 
@@ -128,5 +145,26 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public long GenerateNewFormNumber()
+        {
+            // 實作你的生成單號的邏輯，可以使用資料庫查詢來獲取下一個可用的單號
+            // 這只是一個示例，實際實現會根據你的需求而定
+            long latestFormNumber = db.Checkin.Max(f => ((long)f.ID));
+
+            return latestFormNumber + 1;
+
+        }
+        public ActionResult End()
+        {
+            Session["Time"] = DateTime.Now.ToString();
+            //ViewBag.Time = DateTime.Now.ToString();
+            //return RedirectToAction("Edit");
+            ViewBag.show = "此筆單號下班時間為：" + Session["Time"] + "請按編輯將資料送出。";
+            return RedirectToAction("Index");
+        }
+
+
+
     }
 }

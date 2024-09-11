@@ -1,0 +1,124 @@
+﻿@model WebApplication1.Models.AccountData
+
+@{
+    //  Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "個人資訊修改";
+    ViewBag.role = Session["Role_ID"];
+
+}
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
+}
+
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
+}
+
+
+<html>
+<head>
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+
+        .txt a {
+            color: white;
+        }
+
+        .card {
+            padding: 10px;
+        }
+    </style>
+</head>
+<meta name="viewport" content="width=device-width" />
+
+<main class="main" id="main">
+
+    <h2>個人資訊修改</h2>
+    
+    <div class="card" id="card">
+        <div id="card-body">
+            <p style="color:red; font-weight:500;">系統提醒您：個人資訊修改完成後，系統會自動跳轉至登錄頁面，倘若您密碼更改成功的話，請使用更改後的密碼進行登錄！</p>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
+
+                   
+
+                        <div class="form-group">
+                            
+                            
+                            <div class="col-md-5">
+                                使用者名稱：
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            請輸入新密碼：
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", Value = "", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            電子信箱：
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.E_mail, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.E_mail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            電話：
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <br />
+                        <input type="submit" value="更改" class="btn btn-success" />
+                    </div>
+
+
+               
+            }
+</main>

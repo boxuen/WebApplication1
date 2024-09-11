@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WebApplication1.Models.TeamList>
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "戰隊管理";
+    ViewBag.Name = Session["Username"];
+    ViewBag.Success = Session["msg"];
+    ViewBag.role = Session["Role_ID"];
+}
+
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
+}
+
+<head>
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+
+        .txt a {
+            color: white;
+        }
+
+        .card {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<main class="main" id="main">
+    <div class="pagetitle">
+        <h1>戰隊管理 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>管理者設定該所屬戰隊管理人員。</span></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                <li class="breadcrumb-item active">戰隊管理</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <button class="btn btn-danger">
+        <span class="txt"><i class="ri-add-circle-fill"></i> @Html.ActionLink("新增", "Create")</span>
+    </button>
+    <div class="card" id="card">
+        <table class="table">
+            <tr>
+                <th>
+                    遊戲項目
+                </th>
+
+                <th>
+                    管理所屬帳號
+                </th>
+                <th>資料操作</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Team_name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountData.Username)
+                    </td>
+                    <td>
+                        <button class="btn btn-success btn-sm">
+                            <span class="txt">@Html.ActionLink("修改", "Edit", new { id = item.ID })</span>
+                        </button>
+                        <button class="btn btn btn-danger btn-sm">
+                            <span class="txt">@Html.ActionLink("刪除", "Delete", new { id = item.ID })</span>
+                        </button>
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</main>
+@if (ViewBag.Success != null)
+{
+    <script>
+            alert('@ViewBag.Success');
+    </script>
+}

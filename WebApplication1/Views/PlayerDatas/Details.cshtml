@@ -1,0 +1,146 @@
+﻿@model WebApplication1.Models.PlayerData
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>PlayerData</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.MVP)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MVP)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.KDA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.KDA)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.出場次數)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.出場次數)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.總擊殺)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.總擊殺)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.總助攻)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.總助攻)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.總死亡)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.總死亡)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.場均金錢)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.場均金錢)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.場均補刀)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.場均補刀)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.場均差眼)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.場均差眼)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.場均排眼)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.場均排眼)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.場均參圖率)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.場均參圖率)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.場均對位經濟差)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.場均對位經濟差)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.傷害占比)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.傷害占比)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.經濟占比)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.經濟占比)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PlayerList.Sex)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PlayerList.Sex)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

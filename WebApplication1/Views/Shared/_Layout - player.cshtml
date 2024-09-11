@@ -2,6 +2,7 @@
 <html lang="en">
 @{
     ViewBag.Name = Session["Username"];
+    ViewBag.ID = Session["User_ID"];
 }
 <head>
     <meta charset="utf-8">
@@ -134,12 +135,25 @@
                 </a>
                 <ul id="player-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="#">
+                        @using (var db = new WebApplication1.Models.NEW2101Entities1())
+
+                        {
+                            int viewBagId = Convert.ToInt32(ViewBag.ID);
+                            var result = (from a in db.AccountData
+                                          join p in db.PlayerList on a.ID equals p.Account_ID
+                                          where a.ID == viewBagId
+                                          select new { p.ID }).ToList();
+                            if (result.Count > 0)
+                            {
+                                ViewBag.PID = result.FirstOrDefault().ID;
+                            }
+                        }
+                        <a href="~/PlayerLists/Edit/@ViewBag.PID">
                             <i class="bi bi-circle"></i><span>選手資訊維護</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="~/PlayerDatas/Create">
                             <i class="bi bi-circle"></i><span>選手數據管理</span>
                         </a>
                     </li>
@@ -186,11 +200,11 @@
             <hr />
             <li class="nav-heading">個人專區</li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="~/UserInfo/Edit/@ViewBag.ID">
                     <i class="ri-account-circle-fill"></i>
                     <span>個人資訊</span>
                 </a>
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="~/FeedBacks/Create">
                     <i class="ri-emotion-happy-fill"></i>
                     <span>系統滿意度</span>
                 </a>

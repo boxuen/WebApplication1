@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebApplication1.Models.FeedBack>
+
+@{
+    //  Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "系統反饋";
+    ViewBag.role = Session["Role_ID"];
+
+}
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
+}
+
+
+@{
+        if (ViewBag.role == null)
+        {
+            // 權限是空值，跳轉到登錄頁
+            <script>
+                alert("你無使用權限，媽德給我去登錄吧")
+                location.href = "/Login/Index";</script>
+
+        }
+    }
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<main class="main" id="main">
+    <div class="card" id="card">
+        <h2>資料新增成功...</h2>
+    </div>
+</main>
+
+</html>

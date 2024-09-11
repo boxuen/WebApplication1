@@ -1,0 +1,141 @@
+﻿@model IEnumerable<WebApplication1.Models.PlayerData>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "戰隊管理";
+    ViewBag.Name = Session["Username"];
+    ViewBag.Success = Session["msg"];
+    ViewBag.role = Session["Role_ID"];
+}
+
+
+@* 權限判斷 *@
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
+
+}
+
+@{
+    if (ViewBag.role == null)
+        {
+            // 權限是空值，跳轉到登錄頁
+            <script>
+                alert("你無使用權限，媽德給我去登錄吧")
+                location.href = "/Login/Index";
+            </script>
+
+        }
+}
+
+<html>
+<head>
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+
+        .txt a {
+            color: white;
+        }
+
+        .card {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <main class="main" id="main">
+        <div class="pagetitle">
+            <h1>選手數據 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>維護選手數據。</span></h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                    <li class="breadcrumb-item active">選手數據</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <button class="btn btn-danger">
+            <span class="txt"><i class="ri-add-circle-fill"></i> @Html.ActionLink("新增", "Create")</span>
+        </button>
+        @if (ViewBag.Role < 2)
+        {
+            <div class="card" id="card">
+                <table class="table">
+                    <tr>
+                        <th>
+                            選手帳號
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MVP)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KDA)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.出場次數)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.總擊殺)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.總助攻)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.總死亡)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.場均金錢)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.場均補刀)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.場均差眼)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.場均排眼)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.場均參圖率)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.場均對位經濟差)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.傷害占比)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.經濟占比)
+                        </th>
+
+                        <th>資料操作</th>
+                    </tr>
+
+                 
+
+                </table>
+            </div>
+        }
+
+
+    </main>
+ 
+</body>
+</html>

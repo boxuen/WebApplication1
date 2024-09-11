@@ -1,0 +1,268 @@
+﻿@model IEnumerable<WebApplication1.Models.PlayerList>
+
+
+@{
+    ViewBag.Title = "選手資訊維護";
+    ViewBag.Name = Session["Username"];
+    ViewBag.Success = Session["msg"];
+    ViewBag.role = Session["Role_ID"];
+    ViewBag.TID = Session["TID"];
+}
+
+
+@* 權限判斷 *@
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
+
+
+}
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
+}
+<head>
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+
+        .txt a {
+            color: white;
+        }
+
+        .card {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+
+<main class="main" id="main">
+    <div class="pagetitle">
+        <h1>選手資訊維護 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>維護選手資訊。</span></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                <li class="breadcrumb-item active">選手資訊維護</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    @if (ViewBag.role == 1)
+    {
+        <button class="btn btn-danger">
+            <span class="txt"><i class="ri-add-circle-fill"></i> @Html.ActionLink("新增", "Create")</span>
+        </button>
+        <div class="card" id="card">
+            <table class="table">
+                <tr>
+                    <th>
+                        選手帳號
+                    </th>
+                    <th>
+                        選手所屬戰隊
+                    </th>
+                    <th>
+                        選手年齡
+                    </th>
+                    <th>
+                        選手性別
+                    </th>
+                    <th>
+                        選手住址
+                    </th>
+                    <th>
+                        選手技能
+                    </th>
+                    <th>
+                        選手經驗
+                    </th>
+                    <th>
+                        加入日期
+                    </th>
+
+                    <th>
+                        記事本
+                    </th>
+
+                    <th>資料操作</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccountData.Account)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeamList.Team_name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sex)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Skill)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Exp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Join_date)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Note)
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-sm">
+                                <span class="txt">@Html.ActionLink("修改", "Edit", new { id = item.ID })</span>
+                            </button>
+                            <button class="btn btn btn-danger btn-sm delete-button" data-id="@item.ID">
+                                <span class="txt">@Html.ActionLink("刪除", "Delete", new { id = item.ID })</span>
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <span class="txt">@Html.ActionLink("查看", "Details", new { id = item.ID })</span>
+                            </button>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    }
+
+
+    @if (ViewBag.role == 2)
+    {
+        <button class="btn btn-danger">
+            <span class="txt"><i class="ri-add-circle-fill"></i> @Html.ActionLink("新增", "Create")</span>
+        </button>
+        <div class="card" id="card">
+            <table class="table">
+                <tr>
+                    <th>
+                        選手帳號
+                    </th>
+                    <th>
+                        選手所屬戰隊
+                    </th>
+                    <th>
+                        選手年齡
+                    </th>
+                    <th>
+                        選手性別
+                    </th>
+                    <th>
+                        選手住址
+                    </th>
+                    <th>
+                        選手技能
+                    </th>
+                    <th>
+                        選手經驗
+                    </th>
+                    <th>
+                        加入日期
+                    </th>
+
+                    <th>
+                        記事本
+                    </th>
+
+                    <th>資料操作</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        @if (ViewBag.TID == item.TeamList.ID)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountData.Account)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TeamList.Team_name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Age)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sex)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Skill)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Exp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Join_date)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Note)
+                            </td>
+                            <td>
+                                <button class="btn btn-success btn-sm">
+                                    <span class="txt">@Html.ActionLink("修改", "Edit", new { id = item.ID })</span>
+                                </button>
+                                <button class="btn btn btn-danger btn-sm delete-button" data-id="@item.ID">
+                                    <span class="txt">@Html.ActionLink("刪除", "Delete", new { id = item.ID })</span>
+                                </button>
+                                <button class="btn btn-primary btn-sm">
+                                    <span class="txt">@Html.ActionLink("查看", "Details", new { id = item.ID })</span>
+                                </button>
+                            </td>
+                        }
+
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    }
+
+
+</main>
+
+

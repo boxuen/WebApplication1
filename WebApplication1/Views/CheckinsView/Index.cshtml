@@ -1,0 +1,142 @@
+﻿@model IEnumerable<WebApplication1.Models.Checkin>
+
+@{
+    ViewBag.role = Session["Role_ID"];
+    // ViewBag.show = Session["show"];
+    ViewBag.Name = Session["Username"];
+    ViewBag.Title = "Index";
+    ViewBag.account = Session["account"];
+    ViewBag.msg = Session["msg"];
+    ViewBag.TID = Session["TID"];
+}
+
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
+}
+
+
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+
+        .txt a {
+            color: white;
+        }
+
+        .card {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main class="main" id="main">
+        <div class="pagetitle">
+            <h1>選手出缺勤管理 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>Index</span></h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                </ol>
+            </nav>
+        </div>
+        @*<p>
+            @Html.ActionLink("新增", "Create")
+        </p>*@
+    <div class="card" id="card">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>
+                    上班時間
+                </th>
+                <th>
+                    下班時間
+                </th>
+                <th>
+                    時數
+                </th>
+                <th>
+                    備註
+                </th>
+                <th>
+                    打卡人帳號
+                </th>
+                <th>資料操作</th>
+            </tr>
+            
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (ViewBag.Role < 3)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Work_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Getoff_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.time)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Note)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccountData.Account)
+                        </td>
+                        <td>
+                            @Html.ActionLink("編輯", "Edit", new { id = item.ID }, new { @class = "btn btn-success px-2" }) |
+                            @Html.ActionLink("刪除", "Delete", new { id = item.ID }, new { @class = "btn btn-danger px-2" })
+                        </td>
+                    }
+
+                    
+
+                </tr>
+            }
+
+        </table>
+    </div>
+        
+
+    </main>
+    
+</body>
+</html>

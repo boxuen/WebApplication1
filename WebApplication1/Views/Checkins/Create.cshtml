@@ -1,85 +1,147 @@
 ﻿@model WebApplication1.Models.Checkin
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout - player.cshtml";
+    ViewBag.Title = "新增一筆打卡紀錄";
+    ViewBag.Name = Session["Username"];
+    ViewBag.User_ID = Session["User_ID"];
+    ViewBag.role = Session["Role_ID"];
+    ViewBag.time = Session["Time"];
 }
-
-<h2>Create</h2>
-<main class="main" id="main">
-    @using (Html.BeginForm())
+@* 權限判斷 *@
+@{
+    if (ViewBag.role == 1)
     {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Checkin</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Account, "Account", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Account", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Work_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Work_Date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Work_Date, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Getoff_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Getoff_Date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Getoff_Date, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.time, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.time, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
 
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
 
-</main>
-
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+
+        .txt a {
+            color: white;
+        }
+
+        .card {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main class="main" id="main">
+        <div class="pagetitle">
+
+            <h1>選手打卡 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>請維護說明。</span></h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                    <li class="breadcrumb-item active">選手打卡</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <button class="btn btn-success mb-3" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
+
+        <div id="card" class="card">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        表單單號:(系統預設自動建立單號)
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", Value = ViewBag.ID, @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        打卡帳號:
+                        <div class="row">
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control", Value = ViewBag.User_ID, @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" name="name" value="@ViewBag.Name" class="form-control" readonly />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            上班時間:
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Work_Date, new { htmlAttributes = new { @class = "form-control", Value = DateTime.Now.ToString(), @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Work_Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            小時:
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.time, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            備註:
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <input type="submit" value="新增" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+    </main>
+
+
+    
+</body>
+</html>

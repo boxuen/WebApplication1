@@ -149,7 +149,7 @@
                         <td>
                             @Html.ActionLink("編輯", "Edit", new { id = item.ID }, new { @class = "btn btn-success px-2" })
                            
-                            @if (ViewBag.role < 2)
+                            @if (ViewBag.role == 1)
                             {
                                 @Html.ActionLink("刪除", "Delete", new { id = item.ID }, new { @class = "btn btn-danger px-2" })
                             }

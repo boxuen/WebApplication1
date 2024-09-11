@@ -1,0 +1,194 @@
+﻿@model WebApplication1.Models.PlayerList
+@{
+    ViewBag.Title = "選手資訊維護";
+    ViewBag.Name = Session["Username"];
+    ViewBag.Success = Session["msg"];
+    ViewBag.role = Session["Role_ID"];
+}
+
+
+@* 權限判斷 *@
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
+}
+
+@{
+    if (ViewBag.role == null)
+        {
+            // 權限是空值，跳轉到登錄頁
+            <script>
+                alert("你無使用權限，媽德給我去登錄吧")
+                location.href = "/Login/Index";
+            </script>
+
+        }
+}
+
+<head>
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+
+        .txt a {
+            color: white;
+        }
+
+        .card {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<main class="main" id="main">
+    <div class="pagetitle">
+        <h1>選手資訊維護 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i>新增新進選手基本資料。</span></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                <li class="breadcrumb-item active">選手資訊維護</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <button class="btn btn-success" onclick="history.go(-1)"><i class="ri-delete-back-2-fill"></i> 返回</button>
+
+    <hr />
+    <div class="card" id="card">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    表單單號:(系統預設自動建立單號)
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", Value = ViewBag.ID, @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    請選擇新進選手姓名  &nbsp; <button type="button" class="btn btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        找不到姓名點我
+                    </button>
+
+                    <div class="col-md-10">
+                        @Html.DropDownList("Account_ID", null, htmlAttributes: new { @class = "form-select" })
+                        @Html.ValidationMessageFor(model => model.Account_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    請選擇選手所屬戰隊
+                    <div class="col-md-10">
+                        @Html.DropDownList("Team_ID", null, htmlAttributes: new { @class = "form-select" })
+                        @Html.ValidationMessageFor(model => model.Team_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    選手年齡
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    選手性別
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    地址
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    選手技能
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Skill, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Skill, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    選手經驗
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Exp, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Exp, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    加入日期
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Join_date, new { htmlAttributes = new { @class = "form-control", Value = ViewBag.JoinTime } })
+                        @Html.ValidationMessageFor(model => model.Join_date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    記事本
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="新增" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+
+        <!-- Modal(找不到姓名點我) -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">找不到姓名時該怎麼辦???</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <b>請先確認該選手是否有本系統建立之帳號，查詢路徑：主選單 / 帳號管理。</b>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+

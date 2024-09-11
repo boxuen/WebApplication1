@@ -2,6 +2,9 @@
 <html lang="en">
 @{
     ViewBag.Name = Session["Username"];
+    ViewBag.ID = Session["User_ID"];
+
+
 }
 
 <head>
@@ -42,6 +45,34 @@
     ======================================================== -->
 </head>
 
+
+@* 撈指定的後勤所屬戰隊 *@
+
+@using (var db = new WebApplication1.Models.NEW2101Entities1())
+{
+    int viewbagId = Convert.ToInt32(ViewBag.ID);
+    var result = (from a in db.AccountData
+                  join t in db.TeamList on a.ID equals t.Account_ID
+                  where t.Account_ID == viewbagId
+                  select new
+                  {
+                      t.ID,
+                      t.Team_name,
+                  }
+                ).ToList();
+    if (result.Count > 0)
+    {
+        Session["TID"] = result.FirstOrDefault().ID;
+        ViewBag.TID = result.FirstOrDefault().ID;
+        ViewBag.TName = result.FirstOrDefault().Team_name;
+    }
+}
+
+
+@* 透過TeamList 撈 旗下選手帳號 *@
+
+
+
 <body>
     <section>
     </section>
@@ -81,6 +112,7 @@
                         <li class="dropdown-header">
                             <h6>@ViewBag.Name</h6>
                             <span>後勤</span>
+                            <span>所屬 @ViewBag.TName 戰隊</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -128,17 +160,17 @@
                 </a>
                 <ul id="player-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="#">
+                        <a href="~/PlayerLists">
                             <i class="bi bi-circle"></i><span>選手資訊維護</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="~/PlayerDatas">
                             <i class="bi bi-circle"></i><span>選手數據管理</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="~/CheckinsView">
                             <i class="bi bi-circle"></i><span>選手出缺勤管理</span>
                         </a>
                     </li>
@@ -180,11 +212,11 @@
             <hr />
             <li class="nav-heading">個人專區</li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="~/UserInfo/Edit/@ViewBag.ID">
                     <i class="ri-account-circle-fill"></i>
                     <span>個人資訊</span>
                 </a>
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="~/FeedBacks/Create">
                     <i class="ri-emotion-happy-fill"></i>
                     <span>系統滿意度</span>
                 </a>
