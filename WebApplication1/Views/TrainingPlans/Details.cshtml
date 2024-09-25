@@ -1,0 +1,82 @@
+﻿@model WebApplication1.Models.TrainingPlan
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>TrainingPlan</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Project_Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Project_Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Target)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Target)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Open_Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Open_Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.End_Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.End_Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Schedule)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Schedule)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CloseCase_Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CloseCase_Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TeamList.Team_name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TeamList.Team_name)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

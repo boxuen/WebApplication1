@@ -1,0 +1,218 @@
+﻿@model IEnumerable<WebApplication1.Models.TrainingPlan>
+
+@{
+    ViewBag.Title = "訓練計劃管理";
+    ViewBag.Name = Session["Username"];
+    ViewBag.Success = Session["msg"];
+    ViewBag.role = Session["Role_ID"];
+    ViewBag.TID = Session["TID"];
+
+}
+@* 權限判斷 *@
+@{
+    if (ViewBag.role == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    else if (ViewBag.role == 2)
+    {
+        Layout = "~/Views/Shared/_Layout - manager.cshtml";
+    }
+
+    else
+    {
+        Layout = "~/Views/Shared/_Layout - player.cshtml";
+    }
+
+}
+
+
+@{
+    if (ViewBag.role == null)
+    {
+        // 權限是空值，跳轉到登錄頁
+        <script>
+            alert("你無使用權限，媽德給我去登錄吧")
+            location.href = "/Login/Index";
+        </script>
+
+    }
+}
+
+<head>
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        .pagetitle {
+            font-size: 15px;
+        }
+
+        .txt a {
+            color: white;
+        }
+
+        .card {
+            padding: 10px;
+        }
+    </style>
+</head>
+<main class="main" id="main">
+    <div class="pagetitle">
+
+        <h1>訓練計劃管理 <span class="pagetitle"><i class="ri-arrow-drop-right-fill"></i></span></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                <li class="breadcrumb-item active">訓練計劃管理</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <div class="card" id="card">
+        <p>
+            @Html.ActionLink("新增", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    計畫名稱
+                </th>
+                <th>
+                    目標
+                </th>
+                <th>
+                    開始時間
+                </th>
+                <th>
+                    結束時間
+                </th>
+                <th>
+                    行程
+                </th>
+                <th>
+                    結案時間
+                </th>
+                <th>
+                    所屬戰隊
+                </th>
+                <th>資料操作</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (ViewBag.role == 1)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Target)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Open_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.End_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Schedule)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CloseCase_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeamList.Team_name)
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-sm">
+                                <span class="txt">@Html.ActionLink("修改", "Edit", new { id = item.ID })</span>
+                            </button>
+                            <button class="btn btn btn-danger btn-sm">
+                                <span class="txt">@Html.ActionLink("刪除", "Delete", new { id = item.ID })</span>
+                            </button>
+                            @*<button class="btn btn-primary btn-sm">
+                            <span class="txt">@Html.ActionLink("查看", "Details", new { id = item.ID })</span>
+                        </button>*@
+                        </td>
+                    </tr>
+                }
+                else if (ViewBag.role == 2)
+                {
+                    if (ViewBag.TID == item.TeamList.ID)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Project_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Target)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Open_Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.End_Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Schedule)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CloseCase_Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TeamList.Team_name)
+                            </td>
+                            <td>
+                                <button class="btn btn-success btn-sm">
+                                    <span class="txt">@Html.ActionLink("修改", "Edit", new { id = item.ID })</span>
+                                </button>
+                                <button class="btn btn btn-danger btn-sm">
+                                    <span class="txt">@Html.ActionLink("刪除", "Delete", new { id = item.ID })</span>
+                                </button>
+                                @*<button class="btn btn-primary btn-sm">
+                                <span class="txt">@Html.ActionLink("查看", "Details", new { id = item.ID })</span>
+                            </button>*@
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Target)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Open_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.End_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Schedule)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CloseCase_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeamList.Team_name)
+                        </td>
+                        
+                    </tr>
+                }
+
+            }
+
+
+
+        </table>
+    </div>
+</main>
+
+

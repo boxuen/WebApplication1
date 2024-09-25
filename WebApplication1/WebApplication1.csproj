@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\TrainingPlansController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\AccountDatasController.cs" />
     <Compile Include="Controllers\CheckinsController.cs" />
@@ -849,6 +850,11 @@
     <Content Include="Views\FeedBacks\Details.cshtml" />
     <Content Include="Views\FeedBacks\Edit.cshtml" />
     <Content Include="Views\FeedBacks\Index.cshtml" />
+    <Content Include="Views\TrainingPlans\Create.cshtml" />
+    <Content Include="Views\TrainingPlans\Delete.cshtml" />
+    <Content Include="Views\TrainingPlans\Details.cshtml" />
+    <Content Include="Views\TrainingPlans\Edit.cshtml" />
+    <Content Include="Views\TrainingPlans\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
